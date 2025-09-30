@@ -1,13 +1,13 @@
 class MenuScene extends Phaser.Scene {
-  constructor() {
+constructor() {
     super('menu'); // identifiant unique de la scène
-  }
+}
 
-  preload() {  }
+preload() {  }
 
-  create() {  }
+create() {  }
 
-  update() {  }
+update() {  }
 }
 
 export default MenuScene;

@@ -6,10 +6,10 @@ const config = {
     height: window.innerHeight,
     scene: [BaseScene, MenuScene],
     physics: {
-      default: 'arcade',
-  }
-  };
-  
+    default: 'arcade',
+}
+};
+
 const game = new Phaser.Game(config);
 
 import BaseScene from './BaseScene.js';
