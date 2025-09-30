@@ -1,0 +1,54 @@
+/* fonts */
+$font-primary: '', sans-serif;
+$font-secondary: '', sans-serif;
+
+
+/* couleurs */
+$color-bg: #fff;
+$color-white: #fff;
+$color-black: #000;
+
+$color-hover: #000;
+$color-text: #000;
+
+$color-primary: #000;
+$color-secondary: #000;
+$color-tertiary: #000;
+
+
+/* breakpoints */
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+$breakpoint-tablet--landscape: 1024px;
+$breakpoint-desktop: 1280px;
+$breakpoint-desktop--large: 1440px;
+$breakpoint-ultra-wide: 1920px;
+
+
+/* spacing */
+$space: 0.25rem;
+$space-mobile: 0.5rem;
+$space-tablet: 1rem;
+$space-tablet--landscape: 1.5rem;
+$space-desktop: 2rem;
+$space-desktop--large: 3rem;
+$space-ultra-wide: 4rem;
+
+
+/* radius */
+$radius: 0.25rem;
+$radius-mobile: 0.5rem;
+$radius-tablet: 1rem;
+$radius-tablet--landscape: 1.5rem;
+$radius-desktop: 2rem;
+$radius-desktop--large: 3rem;
+$radius-ultra-wide: 4rem;
+
+
+/* transistions */
+$transition-base: all 0.3s ease-in-out;
+
+$easing-default: ease-in-out;
+$duration-fast: 150ms;
+$duration-medium: 300ms;
+$duration-slow: 500ms;

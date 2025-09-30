@@ -1,0 +1,22 @@
+$space-xxs: 0.25rem;
+$space-xs: 0.5rem;
+$space-sm: 1rem;
+$space-md: 1.5rem;
+$space-lg: 2rem;
+$space-xl: 3rem;
+
+
+/* Sélecteurs pour margin */
+[data-m] { margin: attr(data-m rem); }
+[data-mt] { margin-top: attr(data-mt rem); }
+[data-mb] { margin-bottom: attr(data-mb rem); }
+[data-ml] { margin-left: attr(data-ml rem); }
+[data-mr] { margin-right: attr(data-mr rem); }
+[data-mx] {
+    margin-left: attr(data-mx rem);
+    margin-right: attr(data-mx rem);
+}
+[data-my] {
+    margin-top: attr(data-my rem);
+    margin-bottom: attr(data-my rem);
+}

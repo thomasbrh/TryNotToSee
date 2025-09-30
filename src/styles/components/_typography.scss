@@ -1,0 +1,26 @@
+/* typographies */
+.title-header,
+.title-big, 
+.title-medium, 
+.title-small,
+.title-section
+.title-footer {
+    color: $color-primary;
+    font-family: $font-primary;
+    line-height: 1.2;
+}
+
+.title-header { @include font-size-responsive(122px, 137px, 159px); } // h1
+
+.title-big { @include font-size-responsive(81px, 91px, 106px); } // h2
+
+.title-medium { @include font-size-responsive(54px, 61px, 71px); } // h3
+
+.title-section { @include font-size-responsive(36px, 41px, 47px); } // h4
+
+.title-small { @include font-size-responsive(24px, 27px, 32px); } // h5
+
+.paragraph {
+    @include paragraph ($color-black);
+    @include font-size-responsive(16px, 18px, 21px); /* 1.5 ratio */
+}
