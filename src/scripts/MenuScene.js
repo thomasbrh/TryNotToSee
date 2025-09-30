@@ -1,13 +1,21 @@
-class MenuScene extends Phaser.Scene {
-constructor() {
-    super('menu'); // identifiant unique de la scène
+export class MenuScene extends Phaser.Scene {
+    constructor() {
+        super('MenuScene');
+    }
+
+    preload() {
+        this.load.image('background', './assets/images/decors/Home_background.webp');
+        this.load.image('logo', './assets/images/logo/logo.svg');
+    }
+    
+    create() {
+        this.add.image(400, 300, 'logo');
+        this.add.image(400, 300, 'background');
+    }
+    
+    update() {
+    
+    }
 }
 
-preload() {  }
-
-create() {  }
-
-update() {  }
-}
-
-export default MenuScene;
+console.log('MenuScene');
