@@ -21,6 +21,8 @@ export class level1 extends Phaser.Scene {
     }) */
 
     preload() {
+        hand = this.load.image("hand", "assets/.png");
+        background_level1 = this.load.image("background_level1","\assets\images\level1\Lvl01_background.webp")
     }
     
     create() {
