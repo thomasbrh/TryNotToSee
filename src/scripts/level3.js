@@ -1,6 +1,6 @@
-export class MenuScene extends Phaser.Scene {
+export class level3 extends Phaser.Scene {
     constructor() {
-        super('MenuScene');
+        super('level3');
     }
 
     preload() {
@@ -18,4 +18,4 @@ export class MenuScene extends Phaser.Scene {
     }
 }
 
-console.log('MenuScene');
+console.log('level3');

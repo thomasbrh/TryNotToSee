@@ -1,12 +1,13 @@
 'use strict'; // Attention de bien mettre type="module" dans la balise script du html
-import {MenuScene} from './MenuScene.js';
-import {BaseScene} from './BaseScene.js';
+import {level1} from './level1.js';
+import {level2} from './level2.js';
+import {level3} from './level3.js';
 
 const config = {
     type: Phaser.AUTO,
     width: window.innerWidth,
     height: window.innerHeight,
-    scene: [BaseScene, MenuScene],
+    scene: [level1, level2, level3],
     physics: {
     default: 'arcade',
     }
