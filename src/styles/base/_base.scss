@@ -5,12 +5,32 @@ html {
     overflow-x: hidden;
 }
 
-header, body, section, footer{
-    overflow-x: hidden;
+body{
+    width: 100%;
     margin: 0;
     padding: 0;
 }
-
-body {
-    background-color: $color-bg;
+  
+.scene {
+    width: 986px;
+    height: 675px;
+}
+  
+.home-body{
+    background-image: image-set(
+    url("../../assets/images/Home_background.webp") 1x,
+    url("../../assets/images/Home_background@2x.webp") 2x
+    );
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+  
+  
+.level1 {
+    background-image: image-set(
+      url("../../assets/images/level1/Lvl01_background.webp") 1x,
+      url("../../assets/images/level1/Lvl01_background@2x.webp") 2x
+    );
+    background-size: cover;
+    background-repeat: no-repeat;
 }

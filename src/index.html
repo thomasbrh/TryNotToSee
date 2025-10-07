@@ -23,11 +23,51 @@
         <!-- <script type="module"></script> -->
         <script type="module" src="scripts/main.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.js"></script>
-
         <!-- link Typos -->
+        <link rel="stylesheet" href="https://use.typekit.net/twl0uaj.css">
         
     </head>
 
-    <body> 
+    <body>
+        <section id="home-page" class="home-body scene">
+            <img class="logo-jeu" src="assets/images/logo/logo-jeu.svg" alt="Logo du jeu TryNotToSee">
+
+            <form class="form-user-input">
+                <label class="label-user-input" for="user-input">Pseudo :</label>
+                <input class="username-input" id="user-input" type="text" placeholder="Entrez votre pseudo">
+                <button class="start-button" type="submit">Jouer</button>
+            </form>
+        </section>
+
+        <section id="question" class="question scene">
+
+        </section>
+
+    
+        <section id="level1" class="level1 scene">
+            <img src="assets/images//level1/Lvl01_hand.svg" alt="" class="hand">
+            <img src="assets/images//level1/Lvl01_coworker_rebecca.svg" alt="" class="rebecca">
+
+            <ul class="selection-level1">
+                <li><img src="assets/images//level1/Lvl01_boss_lee.svg" class="background-sil" alt=""></li>
+                <li><img src="assets/images//level1/Lvl01_boss_lee.svg" class="background-sil" alt=""></li>
+                <li><img src="assets/images//level1/Lvl01_boss_lee.svg" class="background-sil" alt=""></li>
+            </ul>   
+        </section>
+
+
+        <section id="level2" class="scene">
+
+        </section>
+
+
+        <section id="level3" class="scene">
+
+        </section>
+
+    
+        <section id="score-label" class="scene">
+
+        </section>
     </body>
 </html>
