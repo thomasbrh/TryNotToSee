@@ -9,28 +9,28 @@ body{
     width: 100%;
     margin: 0;
     padding: 0;
-  }
+}
   
-  .scene {
+.scene {
     width: 986px;
     height: 675px;
-  }
+}
   
-  .home-body{
+.home-body{
     background-image: image-set(
     url("../../assets/images/Home_background.webp") 1x,
     url("../../assets/images/Home_background@2x.webp") 2x
-  );
-  background-size: cover;
-  background-repeat: no-repeat;
-  }
-  
-  
-  .niveau01 {
-    background-image: image-set(
-      url("../../assets/images/Lvl01_background.webp") 1x,
-      url("../../assets/images/Lvl01_background@2x.webp") 2x
     );
     background-size: cover;
     background-repeat: no-repeat;
-  }
+}
+  
+  
+.level1 {
+    background-image: image-set(
+      url("../../assets/images/level1/Lvl01_background.webp") 1x,
+      url("../../assets/images/level1/Lvl01_background@2x.webp") 2x
+    );
+    background-size: cover;
+    background-repeat: no-repeat;
+}

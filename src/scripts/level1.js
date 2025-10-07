@@ -3,7 +3,7 @@ export class level1 extends Phaser.Scene {
         super('level1');
     }
 
-    let UIElements = [];
+/*     let UIElements = [];
     let currentHighlight;
 
     
@@ -18,7 +18,7 @@ export class level1 extends Phaser.Scene {
             default:
                 break;
         }
-    })
+    }) */
 
     preload() {
     }
