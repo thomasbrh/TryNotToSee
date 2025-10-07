@@ -1,0 +1,39 @@
+.logo-jeu{
+    margin-left: 50px;
+    margin-top: 80px;
+    margin-bottom: 0;
+    padding: 0;
+    width: 500px;
+    height: 300px;
+
+    //ajout de l'ombre => vu sur un forum
+    filter: drop-shadow(3px 5px 2px rgba(193, 75, 69, 0.3));
+}
+
+.rebecca {
+    position: relative;
+    bottom: -95px;
+    left: 50px;
+}
+
+.hand {
+    position: relative;
+    bottom: -95px;
+} 
+
+.background-sil {
+    background-color: beige;
+    width: 150px;
+    height: 150px;
+    padding: 1rem;
+    border-radius: 16px;
+}
+
+.selection-niveau1 {
+    display: inline-block;
+    list-style: none;
+    position: relative;
+    right: -136px;
+    top: 32px;
+    gap: 10px;
+}

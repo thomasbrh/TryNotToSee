@@ -3,6 +3,23 @@ export class level1 extends Phaser.Scene {
         super('level1');
     }
 
+    let UIElements = [];
+    let currentHighlight;
+
+    
+    document.addEventListener('keydown', (e) => {
+        switch(e.key) {
+            case 'arrowRight':
+                // si on appuie sur la flèche droite
+                break;
+            case 'arrowLeft':
+                // si on appuie sur la flèche gauche
+                break;
+            default:
+                break;
+        }
+    })
+
     preload() {
     }
     

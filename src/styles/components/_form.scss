@@ -1,0 +1,50 @@
+.form-user-input{
+    display: flex;
+    flex-direction: column;
+}
+
+.label-user-input{
+    margin-left: 48px;
+    margin-bottom: 16px;
+    color: white;
+    font-size: 24px;
+
+    font-family: $font-primary;
+}
+
+.username-input{
+    margin-left: 48px;
+    width: 214px;
+    padding: 15px;
+
+    border: none;
+    border-radius: 50px;
+    background-color: #D9C667;
+    color: white;
+    font-family: $font-primary;
+}
+
+.username-input::placeholder{
+    color: white;
+    font-family: $font-primary;
+    opacity: 0.5;
+}
+
+//CHANGER LE DEFAULT FOCUS
+.username-input:focus{
+    outline: solid 2px white;
+}
+
+.start-button{
+    margin-left: 48px;
+    margin-top: 48px;
+    font-size: 32px;
+    padding: 15px;
+    width: 124px;
+
+    border-radius: 50px;
+    border: none;
+    background-color: #D9C667;
+    color: white;
+    font-family: $font-primary;
+}
