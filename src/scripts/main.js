@@ -5,8 +5,8 @@ import {level3} from './level3.js';
 
 const config = {
     type: Phaser.AUTO,
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: 986 /* window.innerWidth */,
+    height: 675 /* window.innerHeight */,
     parent: 'game-container',
     scene: [level1, level2, level3],
     physics: {

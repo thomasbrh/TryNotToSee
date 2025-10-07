@@ -21,15 +21,31 @@ export class level1 extends Phaser.Scene {
     }) */
 
     preload() {
-        hand = this.load.image("hand", "assets/.png");
-        background_level1 = this.load.image("background_level1","\assets\images\level1\Lvl01_background.webp")
+        // load les images
+        this.load.image("hand", "./assets/images/level1/Lvl01_hand.svg");
+        
+        this.load.image("background_level1", "./assets/images/level1/Lvl01_background.webp");
+
+        this.load.image("rebecca", "./assets/images/level1/Lvl01_coworker_rebecca.svg");
+        this.load.image("dylan", "./assets/images/level1/Lvl01_coworker_dylan.svg");
+        this.load.image("yasmine", "./assets/images/level1/Lvl01_coworker_yasmine.svg");
+        this.load.image("lee", "./assets/images/level1/Lvl01_boss_lee.svg");
     }
     
     create() {
-        // Initialise les touches
+        // initialise les touches
         this.cursors = this.input.keyboard.createCursorKeys();
         this.keyCTRL = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.CTRL);
-        this.keyNumPad0 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ZERO)
+        this.keyNumPad0 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ZERO);
+
+        // affichage des images
+        const bg = this.add.image(0, 0, 'background_level1').setOrigin(0, 0);
+        bg.displayWidth = this.sys.game.config.width;
+        bg.displayHeight = this.sys.game.config.height;
+        
+        this.add.image(150, 535, "hand");
+
+        this.add.image(500, 385, "rebecca");
     }
     
     update() {
