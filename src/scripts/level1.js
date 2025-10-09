@@ -3,49 +3,123 @@ export class level1 extends Phaser.Scene {
         super('level1');
     }
 
-/*     let UIElements = [];
-    let currentHighlight;
+    // let UIElements = [];
+    // let currentHighlight;
+    // let remainingCharacters = [];
+    // let currentCharacter;
+    // let silhouettes = [];
 
     
-    document.addEventListener('keydown', (e) => {
-        switch(e.key) {
-            case 'arrowRight':
-                // si on appuie sur la flèche droite
-                break;
-            case 'arrowLeft':
-                // si on appuie sur la flèche gauche
-                break;
-            default:
-                break;
-        }
-    }) */
+    // document.addEventListener('keydown', (e) => {
+    //     switch(e.key) {
+    //         case 'arrowRight':
+    //             // si on appuie sur la flèche droite
+    //             break;
+    //         case 'arrowLeft':
+    //             // si on appuie sur la flèche gauche
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    // })
+      
 
     preload() {
-        // load les images
+        // load informations characters
+        this.characters = [
+            {
+                name: 'rebecca',
+                image: './assets/images/level1/Lvl01_coworker_rebecca.svg',
+                shadow: [
+                    "./assets/images/level1/shadow/Shadow_rebecca_right.svg",
+                    "./assets/images/level1/shadow/Shadow_rebecca_wrong01.svg",
+                    "./assets/images/level1/shadow/Shadow_rebecca_wrong02.svg",
+                ]
+            },
+            {
+                name: 'dylan',
+                image: './assets/images/level1/Lvl01_coworker_dylan.svg',
+                shadow: [
+                    "./assets/images/level1/shadow/Shadow_dylan_right.svg",
+                    "./assets/images/level1/shadow/Shadow_dylan_wrong01.svg",
+                    "./assets/images/level1/shadow/Shadow_dylan_wrong02.svg",
+                ]
+            },
+            {
+                name: 'jasmine',
+                image: './assets/images/level1/Lvl01_coworker_jasmine.svg',
+                shadow: [
+                    "./assets/images/level1/shadow/Shadow_jasmine_right.svg",
+                    "./assets/images/level1/shadow/Shadow_jasmine_wrong01.svg",
+                    "./assets/images/level1/shadow/Shadow_jasmine_wrong02.svg",
+                ]
+            },
+            {
+                name: 'lee',
+                image: './assets/images/level1/Lvl01_coworker_lee.svg',
+                shadow: [
+                    "./assets/images/level1/shadow/Shadow_lee_right.svg",
+                //    "./assets/images/level1/shadow/Shadow_lee_wrong01.svg",
+                    "./assets/images/level1/shadow/Shadow_lee_wrong02.svg",
+                ]
+            },
+        ];
+
+        // load the images
         this.load.image("hand", "./assets/images/level1/Lvl01_hand.svg");
         
         this.load.image("background_level1", "./assets/images/level1/Lvl01_background.webp");
 
         this.load.image("rebecca", "./assets/images/level1/Lvl01_coworker_rebecca.svg");
         this.load.image("dylan", "./assets/images/level1/Lvl01_coworker_dylan.svg");
-        this.load.image("yasmine", "./assets/images/level1/Lvl01_coworker_yasmine.svg");
+        this.load.image("jasmine", "./assets/images/level1/Lvl01_coworker_jasmine.svg");
         this.load.image("lee", "./assets/images/level1/Lvl01_boss_lee.svg");
+        // load the silhouettes
+        // rebecca
+        this.load.image("shadow-rebecca-right", "./assets/images/level1/shadow/Shadow_rebecca_right.svg");
+        this.load.image("shadow-rebecca-wrong01", "./assets/images/level1/shadow/Shadow_rebecca_wrong01.svg");
+        this.load.image("shadow-rebecca-wrong02", "./assets/images/level1/shadow/Shadow_rebecca_wrong02.svg");
+        // dylan 
+        this.load.image("shadow-dylan-right", "./assets/images/level1/shadow/Shadow_dylan_right.svg");
+        this.load.image("shadow-dylan-wrong01", "./assets/images/level1/shadow/Shadow_dylan_wrong01.svg");
+        this.load.image("shadow-dylan-wrong02", "./assets/images/level1/shadow/Shadow_dylan_wrong02.svg");
+        // jasmine 
+        this.load.image("shadow-jasmine-right", "./assets/images/level1/shadow/Shadow_jasmine_right.svg");
+        this.load.image("shadow-jasmine-wrong01", "./assets/images/level1/shadow/Shadow_jasmine_wrong01.svg");
+        this.load.image("shadow-jasmine-wrong02", "./assets/images/level1/shadow/Shadow_jasmine_wrong02.svg");
+        // lee 
+        this.load.image("shadow-lee-right", "./assets/images/level1/shadow/Shadow_lee_right.svg");
+       /*  this.load.image("shadow-lee-wrong01", "./assets/images/level1/shadow/Shadow_lee_wrong01.svg"); */ // manquante 
+        this.load.image("shadow-lee-wrong02", "./assets/images/level1/shadow/Shadow_lee_wrong02.svg");
+        
     }
     
     create() {
-        // initialise les touches
+        // initialisation of the keys
         this.cursors = this.input.keyboard.createCursorKeys();
         this.keyCTRL = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.CTRL);
         this.keyNumPad0 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ZERO);
 
-        // affichage des images
+        // add the background
         const bg = this.add.image(0, 0, 'background_level1').setOrigin(0, 0);
         bg.displayWidth = this.sys.game.config.width;
         bg.displayHeight = this.sys.game.config.height;
         
+        // add the fixed images
         this.add.image(150, 535, "hand");
 
-        this.add.image(500, 385, "rebecca");
+        // choose a random characters
+        const randomIndex = Phaser.Math.Between(0, this.characters.length - 1); // 0, this.characters.length - 1
+        const currentCharacter = this.characters[randomIndex];
+        console.log(randomIndex)
+        console.log(currentCharacter)
+        
+        // add the image of the characters
+        this.characterImage = this.add.image(500, 405, currentCharacter.name);
+        
+        // add the silhouettes
+        /* this.displaySilhouettes(currentCharacter.silhouettes); */
+     
     }
     
     update() {
@@ -67,7 +141,8 @@ export class level1 extends Phaser.Scene {
         if (this.keyNumPad0.isDown) {
         console.log('NumPad0');
         }
-    } 
+    }
+
 }
 
-console.log('level1')
+console.log('level1');
