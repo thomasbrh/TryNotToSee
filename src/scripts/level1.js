@@ -31,19 +31,19 @@ export class level1 extends Phaser.Scene {
                 name: 'rebecca',
                 image: './assets/images/level1/Lvl01_coworker_rebecca.svg',
                 shadow: [
-                    "./assets/images/level1/shadow/Shadow_rebecca_right.svg",
-                    "./assets/images/level1/shadow/Shadow_rebecca_wrong01.svg",
-                    "./assets/images/level1/shadow/Shadow_rebecca_wrong02.svg",
-                ],
+                    "shadow-rebecca-right",
+                    "shadow-rebecca-wrong01",
+                    "shadow-rebecca-wrong02",
+                    ],
                 correctShadow: "./assets/images/level1/shadow/Shadow_rebecca_right.svg"
             },
             {
                 name: 'dylan',
                 image: './assets/images/level1/Lvl01_coworker_dylan.svg',
                 shadow: [
-                    "./assets/images/level1/shadow/Shadow_dylan_right.svg",
-                    "./assets/images/level1/shadow/Shadow_dylan_wrong01.svg",
-                    "./assets/images/level1/shadow/Shadow_dylan_wrong02.svg",
+                    "shadow-dylan-right",
+                    "shadow-dylan-wrong01",
+                    "shadow-dylan-wrong02",
                 ],
                 correctShadow: "./assets/images/level1/shadow/Shadow_dylan_right.svg"
             },
@@ -51,9 +51,9 @@ export class level1 extends Phaser.Scene {
                 name: 'jasmine',
                 image: './assets/images/level1/Lvl01_coworker_jasmine.svg',
                 shadow: [
-                    "./assets/images/level1/shadow/Shadow_jasmine_right.svg",
-                    "./assets/images/level1/shadow/Shadow_jasmine_wrong01.svg",
-                    "./assets/images/level1/shadow/Shadow_jasmine_wrong02.svg",
+                    "shadow-jasmine-right",
+                    "shadow-jasmine-wrong01",
+                    "shadow-jasmine-wrong02",
                 ],
                 correctShadow: "./assets/images/level1/shadow/Shadow_jasmine_right.svg"
             },
@@ -61,9 +61,9 @@ export class level1 extends Phaser.Scene {
                 name: 'lee',
                 image: './assets/images/level1/Lvl01_coworker_lee.svg',
                 shadow: [
-                    "./assets/images/level1/shadow/Shadow_lee_right.svg",
-                    "./assets/images/level1/shadow/Shadow_lee_wrong01.svg",
-                    "./assets/images/level1/shadow/Shadow_lee_wrong02.svg",
+                    "shadow-lee-right",
+                    "shadow-lee-wrong01",
+                    "shadow-lee-wrong02",
                 ],
                 correctShadow: "./assets/images/level1/shadow/Shadow_lee_right.svg"
             },

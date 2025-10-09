@@ -47,6 +47,7 @@
 
 
 h1{
+    font-family: $font-primary;
     font-weight: 700;
     font-size: 96px;
     color: #D96B52;
@@ -70,7 +71,7 @@ h1{
     cursor: pointer;
     background: #ffffff00;
     border: 5px solid;
-    border-color: var(-btn-bg-couleur-);
+    border-color: $btn-bg-couleur;
     border-radius: 999px;
     display: flex;
     justify-content: space-between;
@@ -103,7 +104,7 @@ h1{
     left: -1px;
     width: 109px;
     height: 60px;
-    background: var(--btn-bg-couleur);
+    background: $btn-bg-couleur;
     border-radius: 999px;
     transition: left 0.40s cubic-bezier(0.67, 0.01, 0.34, 0.99);
     cursor: grab;
