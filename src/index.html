@@ -34,11 +34,12 @@
             <form class="form-user-input">
                 <label class="label-user-input" for="user-input">Pseudo :</label>
                 <input class="username-input" id="user-input" type="text" placeholder="Entrez votre pseudo">
-                <button class="start-button" type="submit">Jouer</button>
+                <button class="start-button" id="user-submit" type="submit">Jouer</button>
+                <div id="pseudoError" class="error" role="alert" aria-live="assertive"></div> <!--message d'erreur : pas de pseudo entré-->
             </form>
         </section>
 
-
+        
 
         <!-- blur page -->
         <section id="blur" class="blur scene home__container">
@@ -46,7 +47,7 @@
                 src="assets/images/blur/Home_background.webp" 
                 srcset="assets/images/blur/Home_background.webp 1x,
                 assets/images/blur/Home_background@2x.webp 2x" 
-                alt="Illustration de Alyssa, composé d'un véhicule jaune sur une route, 3 oiseaux noir (dont 2 en vol) et un poteau électrique en arrière plan (avec l'un des oiseaux dessus)."
+                alt="Illustration composée d'un véhicule jaune sur une route, 3 oiseaux noirs (dont 2 en vol) et un poteau électrique en arrière plan (avec l'un des oiseaux dessus)."
             >
             <img class="oiseau oiseau1" src="assets/images/blur/oiseau1.png" alt="">
             <img class="oiseau oiseau2" src="assets/images/blur/oiseau2.png" alt="">

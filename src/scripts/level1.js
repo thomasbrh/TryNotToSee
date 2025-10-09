@@ -34,7 +34,8 @@ export class level1 extends Phaser.Scene {
                     "./assets/images/level1/shadow/Shadow_rebecca_right.svg",
                     "./assets/images/level1/shadow/Shadow_rebecca_wrong01.svg",
                     "./assets/images/level1/shadow/Shadow_rebecca_wrong02.svg",
-                ]
+                ],
+                correctShadow: "./assets/images/level1/shadow/Shadow_rebecca_right.svg"
             },
             {
                 name: 'dylan',
@@ -43,7 +44,8 @@ export class level1 extends Phaser.Scene {
                     "./assets/images/level1/shadow/Shadow_dylan_right.svg",
                     "./assets/images/level1/shadow/Shadow_dylan_wrong01.svg",
                     "./assets/images/level1/shadow/Shadow_dylan_wrong02.svg",
-                ]
+                ],
+                correctShadow: "./assets/images/level1/shadow/Shadow_dylan_right.svg"
             },
             {
                 name: 'jasmine',
@@ -52,7 +54,8 @@ export class level1 extends Phaser.Scene {
                     "./assets/images/level1/shadow/Shadow_jasmine_right.svg",
                     "./assets/images/level1/shadow/Shadow_jasmine_wrong01.svg",
                     "./assets/images/level1/shadow/Shadow_jasmine_wrong02.svg",
-                ]
+                ],
+                correctShadow: "./assets/images/level1/shadow/Shadow_jasmine_right.svg"
             },
             {
                 name: 'lee',
@@ -61,7 +64,8 @@ export class level1 extends Phaser.Scene {
                     "./assets/images/level1/shadow/Shadow_lee_right.svg",
                 //    "./assets/images/level1/shadow/Shadow_lee_wrong01.svg",
                     "./assets/images/level1/shadow/Shadow_lee_wrong02.svg",
-                ]
+                ],
+                correctShadow: "./assets/images/level1/shadow/Shadow_lee_right.svg"
             },
         ];
 
@@ -117,8 +121,13 @@ export class level1 extends Phaser.Scene {
         // add the image of the characters
         this.characterImage = this.add.image(500, 405, currentCharacter.name);
         
-        // add the silhouettes
-        /* this.displaySilhouettes(currentCharacter.silhouettes); */
+        // add the silhouettes and randomize
+        const randomShadowIndex = Phaser.Math.Between(0, currentCharacter.shadow.length - 1);
+        const currentShadow = currentCharacter.shadow[randomShadowIndex];
+        console.log(randomShadowIndex)
+        console.log(currentShadow)
+
+        this.silhouetteImage = this.add.image(500, 405, currentShadow);
      
     }
     

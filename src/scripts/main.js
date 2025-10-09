@@ -1,5 +1,6 @@
 'use strict'; // Attention de bien mettre type="module" dans la balise script du html
 import './blur.js';
+import './home.js';
 import {level1} from './level1.js';
 import {level2} from './level2.js';
 import {level3} from './level3.js';
