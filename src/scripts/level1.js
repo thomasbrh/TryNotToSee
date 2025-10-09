@@ -120,14 +120,19 @@ export class level1 extends Phaser.Scene {
         
         // add the image of the characters
         this.characterImage = this.add.image(500, 405, currentCharacter.name);
-        
-        // add the silhouettes and randomize
-        const randomShadowIndex = Phaser.Math.Between(0, currentCharacter.shadow.length - 1);
-        const currentShadow = currentCharacter.shadow[randomShadowIndex];
-        console.log(randomShadowIndex)
-        console.log(currentShadow)
 
-        this.silhouetteImage = this.add.image(500, 405, currentShadow);
+        let shadows = currentCharacter.shadow;
+        console.log(shadows);
+        
+        //randomize the silhouettes apparitions
+        shadows.sort(() => Math.random() - 0.5);
+
+        // add the silhouettes
+        for (let i = 0; i < 3; i++) {
+            const currentShadow = shadows[i];
+            this.add.image(500 + i * 100, 405, currentShadow);
+            console.log(currentShadow);
+        }
      
     }
     
