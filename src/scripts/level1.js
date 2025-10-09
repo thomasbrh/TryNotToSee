@@ -62,7 +62,7 @@ export class level1 extends Phaser.Scene {
                 image: './assets/images/level1/Lvl01_coworker_lee.svg',
                 shadow: [
                     "./assets/images/level1/shadow/Shadow_lee_right.svg",
-                //    "./assets/images/level1/shadow/Shadow_lee_wrong01.svg",
+                    "./assets/images/level1/shadow/Shadow_lee_wrong01.svg",
                     "./assets/images/level1/shadow/Shadow_lee_wrong02.svg",
                 ],
                 correctShadow: "./assets/images/level1/shadow/Shadow_lee_right.svg"
