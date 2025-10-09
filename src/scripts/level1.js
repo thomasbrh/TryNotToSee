@@ -115,7 +115,7 @@ export class level1 extends Phaser.Scene {
         console.log(currentCharacter)
         
         // add the image of the characters
-        this.characterImage = this.add.image(500, 405, currentCharacter.name);
+        this.characterImage = this.add.image(450, 405, currentCharacter.name);
 
         let shadows = currentCharacter.shadow;
         console.log(shadows);
@@ -125,10 +125,46 @@ export class level1 extends Phaser.Scene {
 
         // add the silhouettes
         for (let i = 0; i < 3; i++) {
-            const currentShadow = shadows[i];
-            this.add.image(500 + i * 100, 405, currentShadow);
-            console.log(currentShadow);
-        }
+            const x = 825;
+            const y = 135 + i * 200;
+
+            // Crée un objet Graphics
+            const graphics = this.add.graphics();
+
+            // Couleur de remplissage (fond)
+            graphics.fillStyle(0xF8E3CE, 1);
+
+            // Bordure (stroke)
+            graphics.lineStyle(2, 0x633116, 1); // épaisseur, couleur, opacité
+
+            // Dessine un rectangle arrondi
+            const width = 175;
+            const height = 175;
+            const radius = 18;
+
+            graphics.fillRoundedRect(x - width / 2, y - height / 2, width, height, radius);
+            graphics.strokeRoundedRect(x - width / 2, y - height / 2, width, height, radius);
+
+            // Ajoute ta shadow au-dessus
+            const shadow = this.add.image(x, y, shadows[i]).setScale(0.3);
+            }
+
+        // for (let i = 0; i < 3; i++) {
+        //     // display the bg
+        //     const x = 825;
+        //     const y = 132 + i * 200;
+        //     const graphics = this.add.graphics();
+        //     graphics.fillStyle(0xF8E3CE, 1); // ta couleur
+        //     graphics.fillRoundedRect(x - 85, y - 85, 175, 175, 18); // (x, y, width, height, radius)
+        //     /* bg.setStrokeStyle(3, 0x633116, 0.5); */
+
+
+
+        //     // display the shadows
+        //     const currentShadow = shadows[i];
+        //     this.add.image(825, 132 + i * 200, currentShadow).setScale(0.3);
+        //     console.log(currentShadow);
+        // }
      
     }
     
