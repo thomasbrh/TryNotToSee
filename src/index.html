@@ -27,6 +27,7 @@
     </head>
 
     <body>
+        <!-- home page -->
         <section id="home-page" class="home-body scene">
             <img class="logo-jeu" src="assets/images/logo/logo-jeu.svg" alt="Logo du jeu TryNotToSee">
 
@@ -37,11 +38,39 @@
             </form>
         </section>
 
-        <section id="blur" class="blur scene">
 
+
+        <!-- blur page -->
+        <section id="blur" class="blur scene home__container">
+            <img class="bg__home"
+                src="assets/images/blur/Home_background.webp" 
+                srcset="assets/images/blur/Home_background.webp 1x,
+                assets/images/blur/Home_background@2x.webp 2x" 
+                alt="Illustration de Alyssa, composé d'un véhicule jaune sur une route, 3 oiseaux noir (dont 2 en vol) et un poteau électrique en arrière plan (avec l'un des oiseaux dessus)."
+            >
+            <img class="oiseau oiseau1" src="assets/images/blur/oiseau1.png" alt="">
+            <img class="oiseau oiseau2" src="assets/images/blur/oiseau2.png" alt="">
+
+            <div class="voiture__container">
+                <img class="voiture" src="assets/images/blur/voiture.png" alt="">
+                <img class="roue roue1" src="assets/images/blur/roues1.png" alt="">
+                <img class="roue roue2" src="assets/images/blur/roues2.png" alt="">
+            </div>
+            <div class="bg__flou"></div>
+            
+            <div class="home__content">
+                <h1 class="titre__home">Êtes&nbsp;vous<br>mal-voyant&nbsp;?</h1>
+                <div class="toggle">
+                    <span class="label" data-value="oui">OUI</span>
+                    <span class="label" data-value="non">NON</span>
+                    <div class="handle"></div>
+                </div>
+            </div>    
         </section>
 
-    
+
+
+        <!-- game canvas -->
         <section id="game-container" class="game scene">
             <!-- <img src="assets/images//level1/Lvl01_hand.svg" alt="" class="hand">
             <img src="assets/images//level1/Lvl01_coworker_rebecca.svg" alt="" class="rebecca">
@@ -53,7 +82,9 @@
             </ul>    -->
         </section>
 
-    
+
+
+        <!-- score page -->
         <section id="score-label" class="scene">
             
         </section>

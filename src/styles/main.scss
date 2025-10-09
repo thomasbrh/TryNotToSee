@@ -9,24 +9,10 @@
 @import "base/base";
 
 // import des styles layout
-@import "layout/grids";
-@import "layout/containers";
-@import "layout/images";
-
-@import "layout/navigation";
-
-@import "layout/spacing";
-
-@import "layout/animations";
-
-@import "layout/header";
-@import "layout/footer";
+@import "layout/home";
+@import "layout/blur";
+@import "layout/score";
 
 // import des styles de composants
 @import "components/typography";
 
-@import "components/decorations";
-
-@import "components/button";
-@import "components/card";
-@import "components/form";
