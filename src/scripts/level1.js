@@ -29,43 +29,39 @@ export class level1 extends Phaser.Scene {
         this.characters = [
             {
                 name: 'rebecca',
-                image: './assets/images/level1/Lvl01_coworker_rebecca.svg',
                 shadow: [
                     "shadow-rebecca-right",
                     "shadow-rebecca-wrong01",
                     "shadow-rebecca-wrong02",
                     ],
-                correctShadow: "./assets/images/level1/shadow/Shadow_rebecca_right.svg"
+                correctShadow: "shadow-rebecca-right"
             },
             {
                 name: 'dylan',
-                image: './assets/images/level1/Lvl01_coworker_dylan.svg',
                 shadow: [
                     "shadow-dylan-right",
                     "shadow-dylan-wrong01",
                     "shadow-dylan-wrong02",
                 ],
-                correctShadow: "./assets/images/level1/shadow/Shadow_dylan_right.svg"
+                correctShadow: "shadow-dylan-right"
             },
             {
                 name: 'jasmine',
-                image: './assets/images/level1/Lvl01_coworker_jasmine.svg',
                 shadow: [
                     "shadow-jasmine-right",
                     "shadow-jasmine-wrong01",
                     "shadow-jasmine-wrong02",
                 ],
-                correctShadow: "./assets/images/level1/shadow/Shadow_jasmine_right.svg"
+                correctShadow: "shadow-jasmine-right"
             },
             {
                 name: 'lee',
-                image: './assets/images/level1/Lvl01_coworker_lee.svg',
                 shadow: [
                     "shadow-lee-right",
                     "shadow-lee-wrong01",
                     "shadow-lee-wrong02",
                 ],
-                correctShadow: "./assets/images/level1/shadow/Shadow_lee_right.svg"
+                correctShadow: "shadow-lee-right"
             },
         ];
 
@@ -93,7 +89,7 @@ export class level1 extends Phaser.Scene {
         this.load.image("shadow-jasmine-wrong02", "./assets/images/level1/shadow/Shadow_jasmine_wrong02.svg");
         // lee 
         this.load.image("shadow-lee-right", "./assets/images/level1/shadow/Shadow_lee_right.svg");
-       /*  this.load.image("shadow-lee-wrong01", "./assets/images/level1/shadow/Shadow_lee_wrong01.svg"); */ // manquante 
+        this.load.image("shadow-lee-wrong01", "./assets/images/level1/shadow/Shadow_lee_wrong01.svg"); 
         this.load.image("shadow-lee-wrong02", "./assets/images/level1/shadow/Shadow_lee_wrong02.svg");
         
     }
@@ -113,7 +109,7 @@ export class level1 extends Phaser.Scene {
         this.add.image(150, 535, "hand");
 
         // choose a random characters
-        const randomIndex = Phaser.Math.Between(0, this.characters.length - 1); // 0, this.characters.length - 1
+        const randomIndex = Phaser.Math.Between(0, this.characters.length - 1);
         const currentCharacter = this.characters[randomIndex];
         console.log(randomIndex)
         console.log(currentCharacter)
