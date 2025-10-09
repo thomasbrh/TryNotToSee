@@ -30,7 +30,7 @@
 	width: 100%;
 	max-width: 100%;
 	overflow: hidden;
-}
+} /* ca casse le btn de la section blur */
 
 // grid-cols
 @mixin grid-cols($count, $gap: 1rem) {

@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const labels = document.querySelectorAll(".label");
     const bgHome = document.querySelector(".bg__home");
     const bgFlou = document.querySelector(".bg__flou");
+    const bgFlouGame = document.querySelector(".bg__flou-game");
 
     let isDragging = false;
     let startX = 0;
@@ -23,10 +24,18 @@ document.addEventListener("DOMContentLoaded", () => {
             handle.style.left = `${minLeft}px`;
             bgFlou.style.backdropFilter = "blur(7px)";
             bgHome.style.webkitBackdropFilter = "blur(7px)";
+            if (bgFlouGame) {
+                bgFlouGame.style.backdropFilter = "blur(7px)";
+                bgFlouGame.style.webkitBackdropFilter = "blur(7px)";
+            }
         } else {
             handle.style.left = `${maxLeft}px`;
             bgFlou.style.backdropFilter = "blur(14px)";
             bgHome.style.webkitBackdropFilter = "blur(14px)";
+            if (bgFlouGame) {
+                bgFlouGame.style.backdropFilter = "blur(14px)";
+                bgFlouGame.style.webkitBackdropFilter = "blur(14px)";
+            }
         }
     }
 
@@ -84,6 +93,3 @@ document.addEventListener("DOMContentLoaded", () => {
     // Init
     setState("oui");
 });
-
-
-// backup

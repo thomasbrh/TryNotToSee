@@ -41,14 +41,15 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    color: #D96B52;
+    /* color: #D96B52; */
     text-align: center;
 }
 
 
-h1{
-    font-family: $font-primary;
+.titre__home{
+    font-family: $font-primary02;
     font-weight: 700;
+    margin: 0;
     font-size: 96px;
     color: #D96B52;
     text-shadow:
@@ -78,6 +79,7 @@ h1{
     align-items: center;
     gap: 24px;
     padding: 0 15px;
+    box-sizing: content-box; /* ca casse le btn de la section blur */
     box-shadow:
         4px 7px 14px rgba(0, 0, 0, 0.28),
         4px 3px 4px rgba(0, 0, 0, 0.17),
@@ -88,7 +90,8 @@ h1{
 .toggle .label {
     flex: 1;
     text-align: center;
-    font-weight: 100;
+    font-family: $font-primary02;
+    font-weight: 400;
     font-size: 36px;
     color: #ffffff;
     z-index: 3;
@@ -139,9 +142,9 @@ h1{
 
 
 .voiture__container {
-    bottom: 64px;
-    right: 100px;
-    width: 528px;
+    bottom: 41px;
+    right: 125px;
+    width: 490px;
     height: auto;
 }
 
@@ -188,4 +191,22 @@ h1{
     50%  { transform: translateY(1px); }
     75%  { transform: translateY(-0.5px); }
     100% { transform: translateY(0); }
+}
+
+/* Styles pour la section game-container avec flou */
+#game-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.bg__flou-game {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    z-index: 1;
+    pointer-events: none; /* Permet les interactions avec le canvas Phaser en dessous */
 }
