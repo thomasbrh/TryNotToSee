@@ -1,6 +1,7 @@
 .form-user-input{
     display: flex;
     flex-direction: column;
+
 }
 
 .label-user-input{
@@ -16,7 +17,7 @@
     margin-left: 48px;
     width: 214px;
     padding: 15px;
-
+    box-sizing: border-box;
     border: none;
     border-radius: 50px;
     background-color: #D9C667;
@@ -35,7 +36,13 @@
     outline: solid 2px white;
 }
 
+.flex-btn {
+    display: flex;
+    gap: 16px;
+}
+
 .start-button{
+    cursor: pointer;
     margin-left: 48px;
     margin-top: 48px;
     font-size: 32px;
@@ -47,4 +54,17 @@
     background-color: #D9C667;
     color: white;
     font-family: $font-primary;
+}
+
+.sound-button {
+    cursor: pointer;
+    margin-top: 48px;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+}
+
+.sound-button img {
+    width: 75px;
+    height: 75px;
 }

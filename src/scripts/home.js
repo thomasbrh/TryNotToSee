@@ -20,3 +20,32 @@ const form = document.getElementById('form-user-input');
         // window.location.href = "jeu.html?pseudo=" + encodeURIComponent(pseudo);
       }
     }); */
+
+const music = document.getElementById('music');
+const startBtn = document.getElementById('sound-btn');
+const gameContainer = document.getElementById('game-container');
+const soundBtn = document.getElementById('sound-btn');
+
+soundBtn.addEventListener('click', () => {
+  const on = ;
+  const off = ;
+  music.play();
+  if() {
+
+  }
+
+});
+
+window.addEventListener('scroll', () => {
+  const rect = gameContainer.getBoundingClientRect();
+  const inView = rect.top < window.innerHeight && rect.bottom > 0;
+
+  if (inView) {
+    // Section visible → on coupe la musique
+    music.pause();
+  } else {
+    // Sinon, on relance
+    if (music.paused) music.play();
+  }
+});
+    
