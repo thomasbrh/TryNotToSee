@@ -40,7 +40,11 @@
                 <input class="username-input" id="user-input" type="text" placeholder="Entrez votre pseudo">
                 <div class="flex-btn">
                     <button class="start-button" id="user-submit" type="submit">Jouer</button>
-                    <button class="sound-button" id="sound-btn" type="button"><img src="assets/images/sound/sound-off.svg" alt=""></button>
+                    <!-- son -->
+                    <button class="sound-button" id="sound-btn" type="button">
+                        <img id="pause" class="pause" src="assets/images/sound/sound-off.svg" alt=""> 
+                        <img id="play" class="play disabled" src="assets/images/sound/volume-on.svg" alt=""> 
+                    </button>
                 </div>
                 <div id="pseudoError" class="error" role="alert" aria-live="assertive"></div> <!--message d'erreur : pas de pseudo entré-->
             </form>

@@ -68,3 +68,9 @@
     width: 75px;
     height: 75px;
 }
+
+.disabled {
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+}
