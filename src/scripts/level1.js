@@ -95,6 +95,10 @@ export class level1 extends Phaser.Scene {
     }
     
     create() {
+        // const blur 
+        const blurState = window.blurValue; // récupère la valeur du bouton
+        const shouldBlur = (blurState === "non"); // "non" = flou activé
+
         // initialisation of the keys
         this.cursors = this.input.keyboard.createCursorKeys();
         this.keyCTRL = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.CTRL);
@@ -102,11 +106,13 @@ export class level1 extends Phaser.Scene {
 
         // add the background
         const bg = this.add.image(0, 0, 'background_level1').setOrigin(0, 0);
+
+        // resize background
         bg.displayWidth = this.sys.game.config.width;
-        bg.displayHeight = this.sys.game.config.height;
+        bg.displayHeight = this.sys.game.config.height;   
         
         // add the fixed images
-        this.add.image(150, 535, "hand");
+        const hand = this.add.image(150, 535, "hand");
 
         // choose a random characters
         const randomIndex = Phaser.Math.Between(0, this.characters.length - 1);
@@ -116,6 +122,35 @@ export class level1 extends Phaser.Scene {
         
         // add the image of the characters
         this.characterImage = this.add.image(450, 405, currentCharacter.name);
+
+        // add the bg blur
+        document.addEventListener("blurChanged", (e) => {
+        const shouldBlurNow = (e.detail === "non");
+        if (shouldBlurNow) {
+            bg.preFX.clear();
+            bg.preFX.addBlur(1);
+        } else {
+            bg.preFX.clear();
+        }
+        
+        // add character blur
+        if (shouldBlurNow) {
+            this.characterImage.preFX.clear();
+            this.characterImage.preFX.addBlur(1);
+        } else {
+            this.characterImage.preFX.clear();
+        }
+
+        // add blurhand
+        if (shouldBlurNow) {
+            hand.preFX.clear();
+            hand.preFX.addBlur(1);
+        } else {
+            hand.preFX.clear();
+        }
+
+
+        });
 
         let shadows = currentCharacter.shadow;
         
@@ -148,8 +183,6 @@ export class level1 extends Phaser.Scene {
 
             // Ajoute shadow
             const shadowImage = this.add.image(x, y, shadows[i]).setScale(0.3);
-
-            //.preFX.addBlur(8)
         }
     }
     

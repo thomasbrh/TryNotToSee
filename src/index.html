@@ -28,7 +28,7 @@
     </head>
 
     <body>
-        <audio autoplay loop id="music">
+        <audio loop id="music">
             <source id="music-bg" src="assets/images/sound/music-bg.mp3" type="audio/mpeg" />
         </audio>
         <!-- home page -->
@@ -42,8 +42,8 @@
                     <button class="start-button" id="user-submit" type="submit">Jouer</button>
                     <!-- son -->
                     <button class="sound-button" id="sound-btn" type="button">
-                        <img id="pause" class="pause" src="assets/images/sound/sound-off.svg" alt=""> 
-                        <img id="play" class="play disabled" src="assets/images/sound/volume-on.svg" alt=""> 
+                        <img id="pause" class="" src="assets/images/sound/sound-off.svg" alt=""> 
+                        <img id="play" class="disabled" src="assets/images/sound/volume-on.svg" alt=""> 
                     </button>
                 </div>
                 <div id="pseudoError" class="error" role="alert" aria-live="assertive"></div> <!--message d'erreur : pas de pseudo entré-->
@@ -84,15 +84,7 @@
 
         <!-- game canvas -->
         <section id="game-container" class="game scene">
-            <div class="bg__flou-game"></div>
-            <!-- <img src="assets/images//level1/Lvl01_hand.svg" alt="" class="hand">
-            <img src="assets/images//level1/Lvl01_coworker_rebecca.svg" alt="" class="rebecca">
-
-            <ul class="selection-level1">
-                <li><img src="assets/images//level1/Lvl01_boss_lee.svg" class="background-sil" alt=""></li>
-                <li><img src="assets/images//level1/Lvl01_boss_lee.svg" class="background-sil" alt=""></li>
-                <li><img src="assets/images//level1/Lvl01_boss_lee.svg" class="background-sil" alt=""></li>
-            </ul>    -->
+            <!-- <div class="bg__flou-game"></div> -->
         </section>
 
 

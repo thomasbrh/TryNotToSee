@@ -1,5 +1,8 @@
 "use strict";
 
+// Gestion du blur
+window.blurValue = "oui"; // état initial
+
 document.addEventListener("DOMContentLoaded", () => {
     const toggle = document.querySelector(".toggle");
     const handle = document.querySelector(".handle");
@@ -14,31 +17,57 @@ document.addEventListener("DOMContentLoaded", () => {
     const minLeft = -1;
     const maxLeft = 102; // Position max droite du handle
 
-    // F(x) pour update l'état
     function setState(value) {
+        // 1) exposer la valeur pour Phaser
+        window.blurValue = value;
+      
+        // 2) états visuels des labels
         labels.forEach(label => {
-            label.classList.toggle("active", label.dataset.value === value);
+          label.classList.toggle("active", label.dataset.value === value);
         });
+      
+        // 3) remettre le handle à gauche/droite (sinon getCurrentValue() part en vrille)
+        handle.style.left = (value === "oui") ? `${minLeft}px` : `${maxLeft}px`;
+      
+        // 4) (optionnel) garder l’effet sur la page "blur" si tu en as besoin
+        const blurPx = (value === "oui") ? "0px" : "6px";
+        bgFlou.style.backdropFilter = `blur(${blurPx})`;
+        bgHome.style.webkitBackdropFilter = `blur(${blurPx})`;
+      
+        // 5) notifier Phaser si la valeur change pendant le jeu
+        document.dispatchEvent(new CustomEvent("blurChanged", { detail: value }));
+      }
+      
+      
+    console.log(window.blurValue); // "oui" ou "non"
 
-        if (value === "oui") {
-            handle.style.left = `${minLeft}px`;
-            bgFlou.style.backdropFilter = "blur(0px)";
-            bgHome.style.webkitBackdropFilter = "blur(0px)";
-            if (bgFlouGame) {
-                bgFlouGame.style.backdropFilter = "blur(0px)";
-                bgFlouGame.style.webkitBackdropFilter = "blur(0px)";
-            }
-        } else {
-            handle.style.left = `${maxLeft}px`;
-            bgFlou.style.backdropFilter = "blur(6px)";
-            bgHome.style.webkitBackdropFilter = "blur(6px)";
-            if (bgFlouGame) {
-                bgFlouGame.style.backdropFilter = "blur(6px)";
-                bgFlouGame.style.webkitBackdropFilter = "blur(6px)";
-            }
-        }
-    }
 
+    // F(x) pour update l'état
+    // function setState(value) {
+    //     labels.forEach(label => {
+    //         label.classList.toggle("active", label.dataset.value === value);
+    //     });
+
+    //     if (value === "oui") {
+    //         handle.style.left = `${minLeft}px`;
+    //         bgFlou.style.backdropFilter = "blur(0px)";
+    //         bgHome.style.webkitBackdropFilter = "blur(0px)";
+    //         /* if (bgFlouGame) {
+    //             bgFlouGame.style.backdropFilter = "blur(0px)";
+    //             bgFlouGame.style.webkitBackdropFilter = "blur(0px)";
+    //         } */
+    //     } else {
+    //         handle.style.left = `${maxLeft}px`;
+    //         bgFlou.style.backdropFilter = "blur(6px)";
+    //         bgHome.style.webkitBackdropFilter = "blur(6px)";
+    //        /*  if (bgFlouGame) {
+    //             bgFlouGame.style.backdropFilter = "blur(6px)";
+    //             bgFlouGame.style.webkitBackdropFilter = "blur(6px)";
+    //         } */
+    //     }
+    // }
+
+    // Gestion du bouton
     // F(x) pr obtenir la valeur présente
     function getCurrentValue() {
         return parseInt(handle.style.left) <= (maxLeft / 2) ? "oui" : "non";

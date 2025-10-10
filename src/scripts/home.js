@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-//ADD MUSIC
+// add music
 const music = document.getElementById('music');
 const gameContainer = document.getElementById('game-container');
 const soundBtn = document.getElementById('sound-btn');
