@@ -1,32 +1,31 @@
 'use strict';
-/* 
-const form = document.getElementById('form-user-input');
-    const pseudoInput = document.getElementById('user-input');
-    const errorDiv = document.getElementById('pseudoError');
+//USER FORM
 
-    form.addEventListener('submit', function(event) {
-      event.preventDefault(); // Empêche le formulaire de se soumettre
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('user-form');
+  const startButton = document.querySelector('.start-button');
 
-      const pseudo = pseudoInput.value.trim();
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
 
-      if (pseudo === '') {
-        errorDiv.textContent = "Veuillez entrer un pseudo pour jouer.";
-        pseudoInput.focus(); // Ramène le focus sur le champ pour les lecteurs d’écran
-      } else {
-        errorDiv.textContent = "";
-        // Ici tu peux lancer ton jeu
-        alert(`Bienvenue ${pseudo}! Le jeu commence.`);
-        // Exemple : rediriger vers la page du jeu
-        // window.location.href = "jeu.html?pseudo=" + encodeURIComponent(pseudo);
-      }
-    }); */
+    // Get the entered username
+    const usernameInput = document.getElementById('user-input').value;
 
+    // Save the username in localStorage
+    localStorage.setItem('user-input', usernameInput);
+
+    console.log('Username saved:', usernameInput);
+  });
+});
+
+
+//ADD MUSIC
 const music = document.getElementById('music');
 const startBtn = document.getElementById('sound-btn');
 const gameContainer = document.getElementById('game-container');
 const soundBtn = document.getElementById('sound-btn');
 
-soundBtn.addEventListener('click', () => {
+/* soundBtn.addEventListener('click', () => {
   const on = ;
   const off = ;
   music.play();
@@ -34,7 +33,7 @@ soundBtn.addEventListener('click', () => {
 
   }
 
-});
+}); */
 
 window.addEventListener('scroll', () => {
   const rect = gameContainer.getBoundingClientRect();

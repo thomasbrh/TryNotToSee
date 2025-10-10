@@ -35,11 +35,11 @@
         <section id="home-page" class="home-body scene">
             <img class="logo-jeu" src="assets/images/logo/logo-jeu.svg" alt="Logo du jeu TryNotToSee">
 
-            <form class="form-user-input">
+            <form class="form-user-input" id="user-form">
                 <label class="label-user-input" for="user-input">Pseudo :</label>
-                <input class="username-input" id="user-input" type="text" placeholder="Entrez votre pseudo">
+                <input class="username-input" id="user-input" type="text" placeholder="Entrez votre pseudo" required>
                 <div class="flex-btn">
-                    <button class="start-button" id="user-submit" type="submit">Jouer</button>
+                    <button class="start-button" type="submit">Jouer</button>
                     <button class="sound-button" id="sound-btn" type="button"><img src="assets/images/sound/sound-off.svg" alt=""></button>
                 </div>
                 <div id="pseudoError" class="error" role="alert" aria-live="assertive"></div> <!--message d'erreur : pas de pseudo entré-->
