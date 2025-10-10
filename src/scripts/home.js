@@ -21,19 +21,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //ADD MUSIC
 const music = document.getElementById('music');
-const startBtn = document.getElementById('sound-btn');
 const gameContainer = document.getElementById('game-container');
 const soundBtn = document.getElementById('sound-btn');
+const startBtn = document.getElementById('play');
+const pauseBtn = document.getElementById('pause');
+let isPlaying = false;
 
-/* soundBtn.addEventListener('click', () => {
-  const on = ;
-  const off = ;
-  music.play();
-  if() {
+soundBtn.addEventListener('click', () => {
+  isPlaying = !isPlaying
+  console.log(isPlaying)
 
+  startBtn.classList.toggle('disabled', isPlaying);
+  pauseBtn.classList.toggle('disabled', !isPlaying);
+  
+  if (isPlaying) {
+    music.pause();
+  } else {
+    music.play();
   }
-
-}); */
+});
 
 window.addEventListener('scroll', () => {
   const rect = gameContainer.getBoundingClientRect();
