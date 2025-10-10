@@ -70,10 +70,10 @@ export class level1 extends Phaser.Scene {
         
         this.load.image("background_level1", "./assets/images/level1/Lvl01_background.webp");
 
-        this.load.image("rebecca", "./assets/images/level1/Lvl01_coworker_rebecca.svg");
-        this.load.image("dylan", "./assets/images/level1/Lvl01_coworker_dylan.svg");
-        this.load.image("jasmine", "./assets/images/level1/Lvl01_coworker_jasmine.svg");
-        this.load.image("lee", "./assets/images/level1/Lvl01_boss_lee.svg");
+        let rebecca =this.load.image("rebecca", "./assets/images/level1/Lvl01_coworker_rebecca.svg");
+        let dylan =this.load.image("dylan", "./assets/images/level1/Lvl01_coworker_dylan.svg");
+        let jasmine = this.load.image("jasmine", "./assets/images/level1/Lvl01_coworker_jasmine.svg");
+        let lee = this.load.image("lee", "./assets/images/level1/Lvl01_boss_lee.svg");
         // load the silhouettes
         // rebecca
         this.load.image("shadow-rebecca-right", "./assets/images/level1/shadow/Shadow_rebecca_right.svg");
@@ -118,26 +118,27 @@ export class level1 extends Phaser.Scene {
         this.characterImage = this.add.image(450, 405, currentCharacter.name);
 
         let shadows = currentCharacter.shadow;
-        console.log(shadows);
         
         //randomize the silhouettes apparitions
         shadows.sort(() => Math.random() - 0.5);
 
         // add the silhouettes
         for (let i = 0; i < 3; i++) {
+
+            //coordonnées des silhouettes
             const x = 825;
             const y = 135 + i * 200;
 
-            // Crée un objet Graphics
+            // Crée un objet Graphics (fond)
             const graphics = this.add.graphics();
 
             // Couleur de remplissage (fond)
             graphics.fillStyle(0xF8E3CE, 1);
 
-            // Bordure (stroke)
+            // Bordure (stroke-fond)
             graphics.lineStyle(2, 0x633116, 1); // épaisseur, couleur, opacité
 
-            // Dessine un rectangle arrondi
+            // Dessine un rectangle arrondi(border-radius)
             const width = 175;
             const height = 175;
             const radius = 18;
@@ -145,27 +146,11 @@ export class level1 extends Phaser.Scene {
             graphics.fillRoundedRect(x - width / 2, y - height / 2, width, height, radius);
             graphics.strokeRoundedRect(x - width / 2, y - height / 2, width, height, radius);
 
-            // Ajoute ta shadow au-dessus
-            const shadow = this.add.image(x, y, shadows[i]).setScale(0.3);
-            }
+            // Ajoute shadow
+            const shadowImage = this.add.image(x, y, shadows[i]).setScale(0.3);
 
-        // for (let i = 0; i < 3; i++) {
-        //     // display the bg
-        //     const x = 825;
-        //     const y = 132 + i * 200;
-        //     const graphics = this.add.graphics();
-        //     graphics.fillStyle(0xF8E3CE, 1); // ta couleur
-        //     graphics.fillRoundedRect(x - 85, y - 85, 175, 175, 18); // (x, y, width, height, radius)
-        //     /* bg.setStrokeStyle(3, 0x633116, 0.5); */
-
-
-
-        //     // display the shadows
-        //     const currentShadow = shadows[i];
-        //     this.add.image(825, 132 + i * 200, currentShadow).setScale(0.3);
-        //     console.log(currentShadow);
-        // }
-     
+            //.preFX.addBlur(8)
+        }
     }
     
     update() {

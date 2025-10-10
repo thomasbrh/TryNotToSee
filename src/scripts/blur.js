@@ -22,19 +22,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (value === "oui") {
             handle.style.left = `${minLeft}px`;
-            bgFlou.style.backdropFilter = "blur(7px)";
-            bgHome.style.webkitBackdropFilter = "blur(7px)";
+            bgFlou.style.backdropFilter = "blur(0px)";
+            bgHome.style.webkitBackdropFilter = "blur(0px)";
             if (bgFlouGame) {
-                bgFlouGame.style.backdropFilter = "blur(7px)";
-                bgFlouGame.style.webkitBackdropFilter = "blur(7px)";
+                bgFlouGame.style.backdropFilter = "blur(0px)";
+                bgFlouGame.style.webkitBackdropFilter = "blur(0px)";
             }
         } else {
             handle.style.left = `${maxLeft}px`;
-            bgFlou.style.backdropFilter = "blur(14px)";
-            bgHome.style.webkitBackdropFilter = "blur(14px)";
+            bgFlou.style.backdropFilter = "blur(6px)";
+            bgHome.style.webkitBackdropFilter = "blur(6px)";
             if (bgFlouGame) {
-                bgFlouGame.style.backdropFilter = "blur(14px)";
-                bgFlouGame.style.webkitBackdropFilter = "blur(14px)";
+                bgFlouGame.style.backdropFilter = "blur(6px)";
+                bgFlouGame.style.webkitBackdropFilter = "blur(6px)";
             }
         }
     }
