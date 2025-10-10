@@ -1,8 +1,5 @@
 // import des styles utils
 @import "utils/variables";
-@import "utils/responsive";
-@import "utils/mixins";
-@import "utils/functions";
 
 // import des styles de base
 @import "../../node_modules/modern-normalize/modern-normalize.css";
@@ -12,7 +9,4 @@
 @import "layout/home";
 @import "layout/blur";
 @import "layout/score";
-
-// import des styles de composants
-@import "components/typography";
 

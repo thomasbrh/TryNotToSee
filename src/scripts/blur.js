@@ -30,11 +30,11 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         } else {
             handle.style.left = `${maxLeft}px`;
-            bgFlou.style.backdropFilter = "blur(6px)";
-            bgHome.style.webkitBackdropFilter = "blur(6px)";
+            bgFlou.style.backdropFilter = "blur(14px)";
+            bgHome.style.webkitBackdropFilter = "blur(14px)";
             if (bgFlouGame) {
-                bgFlouGame.style.backdropFilter = "blur(6px)";
-                bgFlouGame.style.webkitBackdropFilter = "blur(6px)";
+                bgFlouGame.style.backdropFilter = "blur(14px)";
+                bgFlouGame.style.webkitBackdropFilter = "blur(14px)";
             }
         }
     }
