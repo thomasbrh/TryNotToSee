@@ -35,3 +35,75 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+// all btn
+.btn {
+    cursor: pointer;
+    margin-top: 48px;
+    font-size: 32px;
+    padding: 15px;
+    width: 124px;
+    border-radius: 50px;
+    border: none;
+    background-color: #D9C667;
+    color: white;
+    font-family: $font-primary;
+}
+.sound-button {
+    cursor: pointer;
+    border-radius: 999px;
+    padding: 0; 
+    line-height: 0; // pour aligner box-shadow
+    border: none;
+    background-color: transparent;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+.disabled {
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+}
+.fixed {
+    position: fixed;
+    z-index: 1000;
+    left: calc(986px - 48px - 167px); // scene size - padding - element size
+    top: calc(675px - 48px - 47px); // scene size - padding - element size
+}
+
+.flex-btn {
+    display: flex;
+    gap: 16px;
+}
+
+.start-button{
+    margin-left: 48px;
+    margin-top: 48px;
+    padding: 15px;
+    width: 124px;
+}
+
+.start-game {
+    margin: 0;
+    width: 200px;
+}
+
+.box-shadow {
+    box-shadow:
+        4px 7px 14px rgba(0, 0, 0, 0.28),
+        4px 3px 4px rgba(0, 0, 0, 0.17),
+        inset 0 2px 6px rgba(255, 255, 255, 0.08);
+}
+
+.rotate {
+    --scale: 1;
+    transform: rotate(-6deg) scale(var(--scale, 1.05));
+
+    &:hover {
+      transform: rotate(0deg) scale(var(--scale, 1.05));
+    }
+  }
+  

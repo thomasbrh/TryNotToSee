@@ -52,4 +52,3 @@ window.addEventListener('scroll', () => {
     if (music.paused) music.play();
   }
 });
-    

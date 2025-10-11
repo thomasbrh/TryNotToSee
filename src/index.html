@@ -28,24 +28,44 @@
     </head>
 
     <body>
+        <!-- audio -->
         <audio loop id="music">
             <source id="music-bg" src="assets/images/sound/music-bg.mp3" type="audio/mpeg" />
         </audio>
+
+        <!-- btn son -->
+        <!-- on/off -->
+        <div class="fixed">
+            <div class="flex-btn">
+                <button class="sound-button box-shadow" id="sound-btn" type="button">
+                    <img id="pause" class="" src="assets/images/sound/sound-off.svg" alt="sound off button"> 
+                    <img id="play" class="disabled" src="assets/images/sound/sound-on.svg" alt="sound on button"> 
+                </button>
+                <!-- + -->
+                <button class="sound-button box-shadow" id="sound-btn" type="button">
+                    <img id="up" src="assets/images/sound/sound+.svg" alt="sound up button">
+                </button>
+                <!-- - -->
+                <button class="sound-button box-shadow" type="button">
+                    <img id="down" src="assets/images/sound/sound-.svg" alt="sound down button">
+                </button>
+            </div>
+        </div>
+
+
+
         <!-- home page -->
         <section id="home-page" class="home-body scene">
-            <img class="logo-jeu" src="assets/images/logo/logo-jeu.svg" alt="Logo du jeu TryNotToSee">
+            <img class="logo-jeu logo-animation" src="assets/images/logo/logo-jeu.svg" alt="Logo du jeu TryNotToSee">
 
             <form class="form-user-input" id="user-form">
-                <label class="label-user-input" for="user-input">Pseudo :</label>
-                <input class="username-input" id="user-input" type="text" placeholder="Entrez votre pseudo" required>
-                <div class="flex-btn">
-                    <button class="start-button" id="user-submit" type="submit">Jouer</button>
-                    <!-- son -->
-                    <button class="sound-button" id="sound-btn" type="button">
-                        <img id="pause" class="" src="assets/images/sound/sound-off.svg" alt=""> 
-                        <img id="play" class="disabled" src="assets/images/sound/volume-on.svg" alt=""> 
-                    </button>
-                </div>
+                <label class="label-user-input rotate" for="user-input">Pseudo :</label>
+                <input class="username-input box-shadow rotate" id="user-input" type="text" placeholder="Entrez votre pseudo" required>
+                
+                <!-- btn play -->
+                <button class="btn start-button box-shadow rotate" id="user-submit" type="submit">Jouer</button>
+                
+                <!-- error msg -->
                 <div id="pseudoError" class="error" role="alert" aria-live="assertive"></div> <!--message d'erreur : pas de pseudo entré-->
             </form>
         </section>
@@ -68,22 +88,30 @@
                 <img class="roue roue1" src="assets/images/blur/roues1.png" alt="">
                 <img class="roue roue2" src="assets/images/blur/roues2.png" alt="">
             </div>
+
             <div class="bg__flou"></div>
             
             <div class="home__content">
                 <h1 class="titre__home">Êtes&nbsp;vous<br>mal-voyant&nbsp;?</h1>
-                <div class="toggle">
+                <!-- btn oui/non -->
+ 
+                <div class="toggle box-shadow rotate">
                     <span class="label" data-value="oui">OUI</span>
                     <span class="label" data-value="non">NON</span>
                     <div class="handle"></div>
                 </div>
-            </div>    
+        
+                <!-- btn start-game -->
+                <button class="btn start-game box-shadow rotate" id="start-game" type="submit">Continuer</button>
+                
+            </div>
         </section>
 
 
 
         <!-- game canvas -->
         <section id="game-container" class="game scene">
+            <!-- injection du canvas par Phaser (controller par l'id dans main.js) -->
         </section>
 
 

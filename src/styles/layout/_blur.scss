@@ -78,10 +78,7 @@
     gap: 24px;
     padding: 0 15px;
     box-sizing: content-box;
-    box-shadow:
-        4px 7px 14px rgba(0, 0, 0, 0.28),
-        4px 3px 4px rgba(0, 0, 0, 0.17),
-        inset 0 2px 6px rgba(255, 255, 255, 0.08);
+
     user-select: none; /* Go Checker les compatibilitées */
     -webkit-user-select: none; /* Pour Safari */
 }
