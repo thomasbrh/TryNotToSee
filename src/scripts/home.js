@@ -1,6 +1,5 @@
 'use strict';
 //USER FORM
-
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('user-form');
   const startButton = document.querySelector('.start-button');

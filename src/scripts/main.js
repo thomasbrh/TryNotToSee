@@ -1,16 +1,23 @@
-'use strict'; // Attention de bien mettre type="module" dans la balise script du html
+'use strict';
+
+/* import Lib */
+/* import animation GSAP */
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
+
+/* import fichier */
 import './blur.js';
 import './home.js';
 import {level1} from './level1.js';
 import {level2} from './level2.js';
-import {level3} from './level3.js';
 
 const config = {
     type: Phaser.AUTO,
     width: 986 /* window.innerWidth */,
     height: 675 /* window.innerHeight */,
     parent: 'game-container',
-    scene: [level1, level2, level3],
+    scene: [level1, level2],
     physics: {
     default: 'arcade',
     }
@@ -18,9 +25,4 @@ const config = {
 
 new Phaser.Game(config);
 
-/* Import animation GSAP */
-/* import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-gsap.registerPlugin(ScrollTrigger);
-import './Animations.js'; */
 console.log('main');

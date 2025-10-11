@@ -70,8 +70,8 @@ export class level1 extends Phaser.Scene {
         
         this.load.image("background_level1", "./assets/images/level1/Lvl01_background.webp");
 
-        let rebecca =this.load.image("rebecca", "./assets/images/level1/Lvl01_coworker_rebecca.svg");
-        let dylan =this.load.image("dylan", "./assets/images/level1/Lvl01_coworker_dylan.svg");
+        let rebecca = this.load.image("rebecca", "./assets/images/level1/Lvl01_coworker_rebecca.svg");
+        let dylan = this.load.image("dylan", "./assets/images/level1/Lvl01_coworker_dylan.svg");
         let jasmine = this.load.image("jasmine", "./assets/images/level1/Lvl01_coworker_jasmine.svg");
         let lee = this.load.image("lee", "./assets/images/level1/Lvl01_boss_lee.svg");
         // load the silhouettes
@@ -187,6 +187,7 @@ export class level1 extends Phaser.Scene {
     }
     
     update() {
+        // écoute des touches
         if (this.cursors.left.isDown) {
         console.log('Gauche');
         }

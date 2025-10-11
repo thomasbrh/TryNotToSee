@@ -4,13 +4,11 @@ export class level2 extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('background', './assets/images/decors/Home_background.webp');
-        this.load.image('logo', './assets/images/logo/logo.svg');
+
     }
     
     create() {
-        this.add.image(400, 300, 'logo');
-        this.add.image(400, 300, 'background');
+
     }
     
     update() {
