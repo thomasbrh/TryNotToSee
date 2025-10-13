@@ -27,13 +27,20 @@ body{
     filter: drop-shadow(3px 5px 2px rgba(193, 75, 69, 0.3));
 }
   
-.home-body{
+/* .home-body{
     background-image: image-set(
     url("../../assets/images/Home_background.webp") 1x,
     url("../../assets/images/Home_background@2x.webp") 2x
     );
     background-size: cover;
     background-repeat: no-repeat;
+} */
+
+.animation-bg {
+    position: absolute;
+    z-index: -1000;
+    border: none;
+    filter: saturate(1.35);
 }
 
 // all btn

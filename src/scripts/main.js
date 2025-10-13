@@ -7,6 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 /* import fichier */
+import './base.js';
 import './home.js';
 import './blur.js';
 import {level1} from './level1.js';

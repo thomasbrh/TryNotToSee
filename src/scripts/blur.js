@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // garder l’effet sur la page "blur" si tu en as besoin
         const blurPx = (value === "oui") ? "0px" : "6px";
         bgFlou.style.backdropFilter = `blur(${blurPx})`;
-        bgHome.style.webkitBackdropFilter = `blur(${blurPx})`;
       
         //notifier Phaser si la valeur change pendant le jeu
         document.dispatchEvent(new CustomEvent("blurChanged", { detail: value }));

@@ -38,15 +38,15 @@
         <div class="fixed">
             <div class="flex-btn">
                 <button class="sound-button box-shadow" id="sound-btn" type="button">
-                    <img id="pause" class="" src="assets/images/sound/sound-off.svg" alt="sound off button"> 
-                    <img id="play" class="disabled" src="assets/images/sound/sound-on.svg" alt="sound on button"> 
+                    <img id="pause" class="disabled" src="assets/images/sound/sound-off.svg" alt="sound off button"> 
+                    <img id="play" class="" src="assets/images/sound/sound-on.svg" alt="sound on button"> 
                 </button>
                 <!-- + -->
-                <button class="sound-button box-shadow" id="sound-btn" type="button">
+                <button class="sound-button box-shadow" id="volume-btn-up" type="button">
                     <img id="up" src="assets/images/sound/sound+.svg" alt="sound up button">
                 </button>
                 <!-- - -->
-                <button class="sound-button box-shadow" type="button">
+                <button class="sound-button box-shadow" id="volume-btn-down" type="button">
                     <img id="down" src="assets/images/sound/sound-.svg" alt="sound down button">
                 </button>
             </div>
@@ -56,6 +56,10 @@
 
         <!-- home page -->
         <section id="home-page" class="home-body scene">
+            <video class="animation-bg" autoplay loop muted playsinline>
+                <source src="assets/images/Animation-bg_1.mp4" type="video/mp4" />
+            </video>
+
             <img class="logo-jeu logo-animation" src="assets/images/logo/logo-jeu.svg" alt="Logo du jeu TryNotToSee">
 
             <form class="form-user-input" id="user-form">
@@ -74,20 +78,9 @@
 
         <!-- blur page -->
         <section id="blur" class="blur scene home__container">
-            <img class="bg__home"
-                src="assets/images/blur/Home_background.webp" 
-                srcset="assets/images/blur/Home_background.webp 1x,
-                assets/images/blur/Home_background@2x.webp 2x" 
-                alt="Illustration composée d'un véhicule jaune sur une route, 3 oiseaux noirs (dont 2 en vol) et un poteau électrique en arrière plan (avec l'un des oiseaux dessus)."
-            >
-            <img class="oiseau oiseau1" src="assets/images/blur/oiseau1.png" alt="">
-            <img class="oiseau oiseau2" src="assets/images/blur/oiseau2.png" alt="">
-
-            <div class="voiture__container">
-                <img class="voiture" src="assets/images/blur/voiture.png" alt="">
-                <img class="roue roue1" src="assets/images/blur/roues1.png" alt="">
-                <img class="roue roue2" src="assets/images/blur/roues2.png" alt="">
-            </div>
+            <video class="animation-bg" autoplay loop muted playsinline>
+                <source src="assets/images/Animation-bg.mp4" type="video/mp4" />
+            </video>
 
             <div class="bg__flou"></div>
             

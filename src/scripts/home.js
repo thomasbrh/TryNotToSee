@@ -16,39 +16,3 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Username saved:', usernameInput);
   });
 });
-
-
-// add music
-const music = document.getElementById('music');
-const gameContainer = document.getElementById('game-container');
-const soundBtn = document.getElementById('sound-btn');
-const startBtn = document.getElementById('play');
-const pauseBtn = document.getElementById('pause');
-let isPlaying = false;
-
-soundBtn.addEventListener('click', () => {
-  isPlaying = !isPlaying
-  console.log(isPlaying)
-
-  startBtn.classList.toggle('disabled', isPlaying);
-  pauseBtn.classList.toggle('disabled', !isPlaying);
-  
-  if (isPlaying) {
-    music.pause();
-  } else {
-    music.play();
-  }
-});
-
-window.addEventListener('scroll', () => {
-  const rect = gameContainer.getBoundingClientRect();
-  const inView = rect.top < window.innerHeight && rect.bottom > 0;
-
-  if (inView) {
-    // Section visible → on coupe la musique
-    music.pause();
-  } else {
-    // Sinon, on relance
-    if (music.paused) music.play();
-  }
-});
