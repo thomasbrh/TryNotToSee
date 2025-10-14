@@ -31,7 +31,7 @@ gsap.to('.logo-animation', {
   scale: 1.05,
   y: 10,
   rotation: 4,
-  duration: 2,
+  duration: 4,
   yoyo: true,
   repeat: -1,
 });
