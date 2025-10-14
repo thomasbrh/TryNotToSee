@@ -184,7 +184,36 @@ export class level1 extends Phaser.Scene {
             // Ajoute shadow
             const shadowImage = this.add.image(x, y, shadows[i]).setScale(0.3);
         }
+
+
+    //TIMER
+    var chronoText;
+    var monTimer;
+    var chrono = 0;
+
+    monTimer = this.time.addEvent({
+      delay: 1000,
+      callback: compteUneSeconde,
+      callbackScope: this,
+      loop: true
+    });
+
+    function compteUneSeconde () {
+    chrono= chrono+1; // on incremente le chronometre d'une unite
     }
+
+    chronoText = this.add.text(16, 100, "Time: 0", {
+    fontSize: "24px",
+    fill: "#FFFFFF" //Couleur de l'écriture
+    });
+
+    function compteUneSeconde () {
+    chrono= chrono+1; // on incremente le chronometre d'une unite
+    chronoText.setText("Time: "+ chrono); // mise à jour de l'affichage
+    } 
+    
+
+}
     
     update() {
         // écoute des touches
