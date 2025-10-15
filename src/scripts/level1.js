@@ -2,26 +2,6 @@ export class level1 extends Phaser.Scene {
     constructor() {
         super('level1');
     }
-
-    // let UIElements = [];
-    // let currentHighlight;
-    // let remainingCharacters = [];
-    // let currentCharacter;
-    // let silhouettes = [];
-
-    
-    // document.addEventListener('keydown', (e) => {
-    //     switch(e.key) {
-    //         case 'arrowRight':
-    //             // si on appuie sur la flèche droite
-    //             break;
-    //         case 'arrowLeft':
-    //             // si on appuie sur la flèche gauche
-    //             break;
-    //         default:
-    //             break;
-    //     }
-    // })
       
 
     preload() {
@@ -113,79 +93,75 @@ export class level1 extends Phaser.Scene {
         
         // add the fixed images
         const hand = this.add.image(150, 535, "hand");
-
-        // choose a random characters
-        const randomIndex = Phaser.Math.Between(0, this.characters.length - 1);
-        const currentCharacter = this.characters[randomIndex];
-        console.log(randomIndex)
-        console.log(currentCharacter)
         
-        // add the image of the characters
-        this.characterImage = this.add.image(450, 405, currentCharacter.name);
 
         // add the bg blur
+        /* document.addEventListener("blurChanged", (e) => {
+            const shouldBlurNow = (e.detail === "non");
+            if (shouldBlurNow) {
+                bg.preFX.clear();
+                bg.preFX.addBlur(1);
+            } else {
+                bg.preFX.clear();
+            }
+            
+            // add character blur
+            if (shouldBlurNow) {
+                this.characterImage.preFX.clear();
+                this.characterImage.preFX.addBlur(1);
+            } else {
+                this.characterImage.preFX.clear();
+            }
+    
+            // add blurhand
+            if (shouldBlurNow) {
+                hand.preFX.clear();
+                hand.preFX.addBlur(1);
+            } else {
+                hand.preFX.clear();
+            }
+        }); */
+
+        // état initial du blur (nouvelle variable)
+        this.isBlurred = (window.blurValue === "non"); // true = flou activé
+
+        // add the bg blur listener (met à jour le flag et applique le blur aux objets existants)
         document.addEventListener("blurChanged", (e) => {
-        const shouldBlurNow = (e.detail === "non");
-        if (shouldBlurNow) {
-            bg.preFX.clear();
-            bg.preFX.addBlur(1);
-        } else {
-            bg.preFX.clear();
-        }
-        
-        // add character blur
-        if (shouldBlurNow) {
-            this.characterImage.preFX.clear();
-            this.characterImage.preFX.addBlur(1);
-        } else {
-            this.characterImage.preFX.clear();
-        }
-
-        // add blurhand
-        if (shouldBlurNow) {
-            hand.preFX.clear();
-            hand.preFX.addBlur(1);
-        } else {
-            hand.preFX.clear();
-        }
-
-
+            const shouldBlurNow = (e.detail === "non");
+            this.isBlurred = shouldBlurNow; // garde l'état courant
+            // bg
+            if (shouldBlurNow) {
+                bg.preFX.clear();
+                bg.preFX.addBlur(1);
+            } else {
+                bg.preFX.clear();
+            }
+            // character (si il existe)
+            if (this.characterImage) {
+                this.characterImage.preFX.clear();
+                if (shouldBlurNow) this.characterImage.preFX.addBlur(1);
+            }
+            // hand
+            if (shouldBlurNow) {
+                hand.preFX.clear();
+                hand.preFX.addBlur(1);
+            } else {
+                hand.preFX.clear();
+            }
         });
 
-        let shadows = currentCharacter.shadow;
+        // helper : applique (ou retire) le blur sur un sprite selon this.isBlurred
+        this.applyBlurTo = (sprite) => {
+            if (!sprite) return;
+            // sécurité : vérifier que preFX existe
+            if (!sprite.preFX) return;
+            sprite.preFX.clear();
+            if (this.isBlurred) sprite.preFX.addBlur(1);
+        };
         
-        //randomize the silhouettes apparitions
-        shadows.sort(() => Math.random() - 0.5);
-
-        // add the silhouettes
-        for (let i = 0; i < 3; i++) {
-
-            //coordonnées des silhouettes
-            const x = 825;
-            const y = 135 + i * 200;
-
-            // Crée un objet Graphics (fond)
-            const graphics = this.add.graphics();
-
-            // Couleur de remplissage (fond)
-            graphics.fillStyle(0xF8E3CE, 1);
-
-            // Bordure (stroke-fond)
-            graphics.lineStyle(2, 0x633116, 1); // épaisseur, couleur, opacité
-
-            // Dessine un rectangle arrondi(border-radius)
-            const width = 175;
-            const height = 175;
-            const radius = 18;
-
-            graphics.fillRoundedRect(x - width / 2, y - height / 2, width, height, radius);
-            graphics.strokeRoundedRect(x - width / 2, y - height / 2, width, height, radius);
-
-            // Ajoute shadow
-            const shadowImage = this.add.image(x, y, shadows[i]).setScale(0.3);
-        }
 
 
+<<<<<<< HEAD
     //BTN "c'est parti!" QUI DECLENCHE TIMER
 
     const graphics = this.add.graphics();
@@ -235,6 +211,161 @@ export class level1 extends Phaser.Scene {
     console.log('Temps écoulé :', elapsed, 's');
 
 }
+=======
+        // --- INITIALISATION V2 ---
+        this.remainingCharacters = [...this.characters]; // copie
+        this.score = 0;
+        this.currentCharacter = null;
+        this.shadowGroup = null;
+        
+        // résultats détaillés (pour affichage final)
+        this.results = JSON.parse(localStorage.getItem("level1_results") || "[]");
+        
+        // fonction pour charger un nouveau personnage
+        this.loadNextCharacter = () => {
+            // si plus de personnages => fin
+            if (this.remainingCharacters.length === 0) {
+                console.log("level 1 terminé");
+                // sauvegarde finale
+                localStorage.setItem("level1_score", this.score);
+                localStorage.setItem("level1_results", JSON.stringify(this.results));
+                
+                // affiche le score final
+                this.add.rectangle(this.cameras.main.centerX, 260, 520, 120, 0x000000, 0.6).setOrigin(0.5);
+                this.add.text(this.cameras.main.centerX, 260, `Score final : ${this.score}/4`, { fontSize: "32px", fill: "#fff" }).setOrigin(0.5);
+                return;
+            }
+            
+            // supprime ancien personnage et ombres si présents
+            if (this.characterImage) {
+                this.characterImage.destroy();
+                this.characterImage = null;
+            }
+            if (this.shadowGroup) {
+                // détruit tous les enfants et le groupe
+                this.shadowGroup.clear(true, true);
+                this.shadowGroup.destroy(true);
+                this.shadowGroup = null;
+            }
+            
+            // sélection aléatoire du personnage suivant
+            const index = Phaser.Math.Between(0, this.remainingCharacters.length - 1);
+            this.currentCharacter = this.remainingCharacters.splice(index, 1)[0];
+            
+            // ajoute l'image du personnage
+            this.characterImage = this.add.image(450, 405, this.currentCharacter.name);
+            this.applyBlurTo(this.characterImage); // applique le flou à l'image du personnage
+            
+            // crée un groupe pour les shadows
+            this.shadowGroup = this.add.group();
+            
+            // mélange des 3 ombres
+            const shuffledShadows = Phaser.Utils.Array.Shuffle([...this.currentCharacter.shadow]);
+            
+            // --- crée les 3 blocs ombre/cliquables (version avec Zone) ---
+            shuffledShadows.forEach((shadowKey, i) => {
+                const x = 825;
+                const y = 135 + i * 200;
+                const width = 175;
+                const height = 175;
+                const radius = 18;
+                
+                // fond du bloc + les bordures
+                const graphics = this.add.graphics();
+                graphics.fillStyle(0xF8E3CE, 1);
+                graphics.lineStyle(2, 0x633116, 1);
+                graphics.fillRoundedRect(x - width / 2, y - height / 2, width, height, radius);
+                graphics.strokeRoundedRect(x - width / 2, y - height / 2, width, height, radius);
+                
+                // Ajoute shadow
+                const shadowImg = this.add.image(x, y, shadowKey).setScale(0.3);
+                
+                // création d'une zone interactive par dessus le bloc (centre = x,y)
+                const zone = this.add.zone(x, y, width, height).setOrigin(0.5).setInteractive({ useHandCursor: true });
+                
+                // stocke des meta : stocke des informations utiles à l’objet pour pouvoir les récupérer plus tard quand on clique dessus (savoir quelle shadow a été cliquée).
+                zone._meta = { shadowKey, graphics, x, y, width, height };
+                
+                // hover (optionnel car pc)
+                zone.on('pointerover', () => {
+                    graphics.clear();
+                    graphics.fillStyle(0xF8E3CE, 1);
+                    graphics.lineStyle(3, 0x8B5E3C, 1); // bord plus large au survol
+                    graphics.fillRoundedRect(x - width / 2, y - height / 2, width, height, radius);
+                    graphics.strokeRoundedRect(x - width / 2, y - height / 2, width, height, radius);
+                });
+                zone.on('pointerout', () => {
+                    graphics.clear();
+                    graphics.fillStyle(0xF8E3CE, 1);
+                    graphics.lineStyle(2, 0x633116, 1);
+                    graphics.fillRoundedRect(x - width / 2, y - height / 2, width, height, radius);
+                    graphics.strokeRoundedRect(x - width / 2, y - height / 2, width, height, radius);
+                });
+                
+                // clic sur le bloc
+                zone.on('pointerdown', () => {
+                    // désactiver toutes les interactions pour éviter les double-clics
+                    if (this.shadowGroup) {
+                        this.shadowGroup.getChildren().forEach(child => {
+                            if (child.disableInteractive) child.disableInteractive();
+                        });
+                    }
+                    
+                    const chosen = zone._meta.shadowKey;
+                    const isCorrect = chosen === this.currentCharacter.correctShadow;
+                    
+                    // bordure verte er rouge
+                    const feedback = this.add.graphics();
+                    feedback.lineStyle(6, isCorrect ? 0x2ecc71 : 0xe74c3c, 1);
+                    const gx = zone._meta.x - zone._meta.width / 2;
+                    const gy = zone._meta.y - zone._meta.height / 2;
+                    feedback.strokeRoundedRect(gx, gy, zone._meta.width, zone._meta.height, 18);
+                    
+                    // met à jour le score
+                    if (isCorrect) this.score++;
+                    this.results.push({
+                        character: this.currentCharacter.name,
+                        chosenShadow: chosen,
+                        correctShadow: this.currentCharacter.correctShadow,
+                        correct: isCorrect
+                    });
+                    
+                    localStorage.setItem("level1_score", this.score);
+                    localStorage.setItem("level1_results", JSON.stringify(this.results));
+                    
+                    // petit délai puis => au personnage suivant
+                    this.time.delayedCall(700, () => {
+                        feedback.destroy();
+                        this.loadNextCharacter();
+                    });
+                });
+                
+                // ajoute les objets au shadowGroup pour facilité
+                this.shadowGroup.add(graphics);
+                this.shadowGroup.add(shadowImg);
+                this.shadowGroup.add(zone);
+            });
+        }; // fin this.loadNextCharacter
+        
+        // APPEL initial (doit être en dehors)
+        this.loadNextCharacter();
+
+
+        // --- TIMER ---
+        this.chrono = 0;
+        this.chronoText = this.add.text(16, 100, "Time: 0", { fontSize: "24px", fill: "#FFFFFF" });
+        
+        this.monTimer = this.time.addEvent({
+            delay: 1000,
+            callback: () => {
+                this.chrono += 1;
+                this.chronoText.setText("Time: " + this.chrono);
+            },
+            loop: true
+        });
+    }
+    
+>>>>>>> levels
     
     update() {
 
