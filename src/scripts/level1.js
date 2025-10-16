@@ -154,7 +154,6 @@ export class level1 extends Phaser.Scene {
             const shadowImage = this.add.image(x, y, shadows[i]).setScale(0.3);
         }
 
-
         //BTN "c'est parti!" QUI DECLENCHE TIMER
         const graphics = this.add.graphics();
         graphics.fillStyle(0xD9C667, 1); // couleur du fond
