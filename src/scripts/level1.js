@@ -163,7 +163,7 @@ export class level1 extends Phaser.Scene {
 
                 const graphics = this.add.graphics();
                 graphics.fillStyle(0xF8E3CE, 1);
-                graphics.lineStyle(2, 0x633116, 1);
+                graphics.lineStyle(2, 0xffffff, 1);
                 graphics.fillRoundedRect(x - 87.5, y - 87.5, 175, 175, 18);
                 graphics.strokeRoundedRect(x - 87.5, y - 87.5, 175, 175, 18);
                 this.shadowGraphics.push(graphics);
@@ -178,25 +178,62 @@ export class level1 extends Phaser.Scene {
             applyBlur(window.blurValue === "non"); // garde le flou si déjà activé
         };
 
-        // Highlight
+        // Highlight shadow
         this.highlightSelectedShadow = () => {
-            this.shadowImages.forEach((img, index) => {
-                img.setTint(index === this.selectedIndex ? 0xFFD700 : 0xffffff);
+            this.shadowGraphics.forEach((g, index) => {
+                g.clear();
+                // Fond inchangé
+                g.fillStyle(0xF8E3CE, 1);
+
+                // Si c’est la sélection actuelle → bordure bleue
+                if (index === this.selectedIndex) {
+                g.lineStyle(3, 0x000000, 1); // bleu vif
+                } else {
+                g.lineStyle(2, 0xE3B09D, 1); // blanc
+                }
+
+                g.fillRoundedRect(825 - 87.5, 135 + index * 200 - 87.5, 175, 175, 18);
+                g.strokeRoundedRect(825 - 87.5, 135 + index * 200 - 87.5, 175, 175, 18);
             });
         };
+
 
         // Validation 
         this.validateSelection = () => {
             const selectedShadowKey = this.shadowImages[this.selectedIndex].texture.key;
-            if (selectedShadowKey === this.currentCharacter.correctShadow) {
-                console.log("Correct !");
+            const isCorrect = selectedShadowKey === this.currentCharacter.correctShadow;
+
+            const color = isCorrect ? 0xD9C667 : 0xD96B52;; // vert ou rouge
+            const message = isCorrect ? "Correct !" : "Incorrect !";
+
+            // Changer la bordure sélectionnée
+            const selectedGraphic = this.shadowGraphics[this.selectedIndex];
+            selectedGraphic.clear();
+            selectedGraphic.fillStyle(0xF8E3CE, 1);
+            selectedGraphic.lineStyle(4, color, 1);
+            selectedGraphic.fillRoundedRect(825 - 87.5, 135 + this.selectedIndex * 200 - 87.5, 175, 175, 18);
+            selectedGraphic.strokeRoundedRect(825 - 87.5, 135 + this.selectedIndex * 200 - 87.5, 175, 175, 18);
+
+            // Afficher un texte temporaire
+            const resultText = this.add.text(493, 180, message, {
+                fontSize: '36px',
+                fill: isCorrect ? '0xD9C667' : '0xD96B52;',
+                fontFamily: "dynapuff-condensed"
+            }).setOrigin(0.5);
+
+            // Marquer le personnage si bon
+            if (isCorrect) {
                 this.validatedCharacters.push(this.currentCharacter);
                 this.remainingCharacters = this.remainingCharacters.filter(c => c !== this.currentCharacter);
-            } else {
-                console.log("Incorrect, relancer ce personnage");
             }
-            this.loadNewCharacter();
+
+            // Pause puis chargement du prochain
+            this.time.delayedCall(1000, () => {
+                resultText.destroy();
+                this.loadNewCharacter();
+            });
         };
+
 
         // BTN START
         const graphics = this.add.graphics();
