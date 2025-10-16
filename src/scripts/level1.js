@@ -2,28 +2,7 @@ export class level1 extends Phaser.Scene {
     constructor() {
         super('level1');
     }
-
-    // let UIElements = [];
-    // let currentHighlight;
-    // let remainingCharacters = [];
-    // let currentCharacter;
-    // let silhouettes = [];
-
     
-    // document.addEventListener('keydown', (e) => {
-    //     switch(e.key) {
-    //         case 'arrowRight':
-    //             // si on appuie sur la flèche droite
-    //             break;
-    //         case 'arrowLeft':
-    //             // si on appuie sur la flèche gauche
-    //             break;
-    //         default:
-    //             break;
-    //     }
-    // })
-      
-
     preload() {
         // load informations characters
         this.characters = [
@@ -148,8 +127,6 @@ export class level1 extends Phaser.Scene {
         } else {
             hand.preFX.clear();
         }
-
-
         });
 
         let shadows = currentCharacter.shadow;
@@ -186,60 +163,56 @@ export class level1 extends Phaser.Scene {
         }
 
 
-    //BTN "c'est parti!" QUI DECLENCHE TIMER
+        //BTN "c'est parti!" QUI DECLENCHE TIMER
 
-    const graphics = this.add.graphics();
-    graphics.fillStyle(0xD9C667, 1); // couleur du fond
-    graphics.fillRoundedRect(440, 350, 170, 55, 25);
+        const graphics = this.add.graphics();
+        graphics.fillStyle(0xD9C667, 1); // couleur du fond
+        graphics.fillRoundedRect(440, 350, 170, 55, 25);
 
-    const timerButton = this.add.text(452, 360, "C'est parti !", { fill: 'white', backgroundColor: '#D9C667', fontSize: '32px', fontFamily: "dynapuff-condensed", borderRadius: "15" });
+        const timerButton = this.add.text(452, 360, "C'est parti !", { fill: 'white', backgroundColor: '#D9C667', fontSize: '32px', fontFamily: "dynapuff-condensed", borderRadius: "15" });
 
-    timerButton.setInteractive();
+        timerButton.setInteractive();
 
-    timerButton.on('pointerdown', () => {
-        monTimer.paused = false;
-        timerButton.setVisible(false);
-        graphics.setVisible(false);
-    });
+        timerButton.on('pointerdown', () => {
+            monTimer.paused = false;
+            timerButton.setVisible(false);
+            graphics.setVisible(false);
+        });
 
-    //TIMER
-    var chronoText;
-    var monTimer;
-    var chrono = 0;
+        //TIMER
+        var chronoText;
+        var monTimer;
+        var chrono = 0;
 
-    monTimer = this.time.addEvent({
-      delay: 1000,
-      callback: compteUneSeconde,
-      callbackScope: this,
-      startAt: 0,
-      paused: true,
-      loop: true
-    });
+        monTimer = this.time.addEvent({
+            delay: 1000,
+            callback: compteUneSeconde,
+            callbackScope: this,
+            startAt: 0,
+            paused: true,
+            loop: true
+        });
 
-    function compteUneSeconde () {
-    chrono= chrono+1
+        function compteUneSeconde () {
+            chrono= chrono+1
+        }
+
+        chronoText = this.add.text(16, 100, "Time: 0", {
+            fontSize: "24px",
+            fill: "#FFFFFF"
+        });
+
+        function compteUneSeconde () {
+            chrono= chrono+1;
+            chronoText.setText("Time: "+ chrono);
+        }
+
+        var elapsed = monTimer.getElapsedSeconds();
+
+        console.log('Temps écoulé :', elapsed, 's');
     }
-
-    chronoText = this.add.text(16, 100, "Time: 0", {
-    fontSize: "24px",
-    fill: "#FFFFFF"
-    });
-
-    function compteUneSeconde () {
-    chrono= chrono+1;
-    chronoText.setText("Time: "+ chrono);
-    }
-
-    var elapsed = monTimer.getElapsedSeconds();
-
-    console.log('Temps écoulé :', elapsed, 's');
-
-}
     
     update() {
-
-        //TIMER INFOS
-
         // écoute des touches
         if (this.cursors.left.isDown) {
         console.log('Gauche');
