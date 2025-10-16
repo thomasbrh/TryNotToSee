@@ -1,7 +1,7 @@
 export class level1 extends Phaser.Scene {
     constructor() {
         super('level1');
-    }     
+    }
 
     preload() {
         // load informations characters
@@ -92,7 +92,15 @@ export class level1 extends Phaser.Scene {
         
         // add the fixed images
         const hand = this.add.image(150, 535, "hand");
+
+        // choose a random characters
+        const randomIndex = Phaser.Math.Between(0, this.characters.length - 1);
+        const currentCharacter = this.characters[randomIndex];
+        console.log(randomIndex)
+        console.log(currentCharacter)
         
+        // add the image of the characters
+        this.characterImage = this.add.image(450, 405, currentCharacter.name);
 
         // add the bg blur
         document.addEventListener("blurChanged", (e) => {
@@ -119,6 +127,8 @@ export class level1 extends Phaser.Scene {
         } else {
             hand.preFX.clear();
         }
+
+
         });
 
         let shadows = currentCharacter.shadow;
@@ -153,58 +163,9 @@ export class level1 extends Phaser.Scene {
             // Ajoute shadow
             const shadowImage = this.add.image(x, y, shadows[i]).setScale(0.3);
         }
-
-        //BTN "c'est parti!" QUI DECLENCHE TIMER
-        const graphics = this.add.graphics();
-        graphics.fillStyle(0xD9C667, 1); // couleur du fond
-        graphics.fillRoundedRect(440, 350, 170, 55, 25);
-
-        const timerButton = this.add.text(452, 360, "C'est parti !", { fill: 'white', backgroundColor: '#D9C667', fontSize: '32px', fontFamily: "dynapuff-condensed", borderRadius: "15" });
-
-        timerButton.setInteractive();
-
-        timerButton.on('pointerdown', () => {
-            monTimer.paused = false;
-            timerButton.setVisible(false);
-            graphics.setVisible(false);
-        });
-
-        //TIMER
-        var chronoText;
-        var monTimer;
-        var chrono = 0;
-
-        monTimer = this.time.addEvent({
-            delay: 1000,
-            callback: compteUneSeconde,
-            callbackScope: this,
-            startAt: 0,
-            paused: true,
-            loop: true
-        });
-
-        function compteUneSeconde () {
-            chrono= chrono+1
-        }
-
-        chronoText = this.add.text(16, 100, "Time: 0", {
-            fontSize: "24px",
-            fill: "#FFFFFF"
-        });
-
-        function compteUneSeconde () {
-            chrono= chrono+1;
-            chronoText.setText("Time: "+ chrono);
-        }
-
-        var elapsed = monTimer.getElapsedSeconds();
-
-        console.log('Temps écoulé :', elapsed, 's');
     }
     
     update() {
-        //TIMER INFOS
-
         // écoute des touches
         if (this.cursors.left.isDown) {
         console.log('Gauche');
