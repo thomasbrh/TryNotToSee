@@ -12,7 +12,7 @@ export class level1 extends Phaser.Scene {
                     "shadow-rebecca-right",
                     "shadow-rebecca-wrong01",
                     "shadow-rebecca-wrong02",
-                    ],
+                ],
                 correctShadow: "shadow-rebecca-right"
             },
             {
@@ -46,13 +46,12 @@ export class level1 extends Phaser.Scene {
 
         // load the images
         this.load.image("hand", "./assets/images/level1/Lvl01_hand.svg");
-        
         this.load.image("background_level1", "./assets/images/level1/Lvl01_background.webp");
+        this.load.image("rebecca", "./assets/images/level1/Lvl01_coworker_rebecca.svg");
+        this.load.image("dylan", "./assets/images/level1/Lvl01_coworker_dylan.svg");
+        this.load.image("jasmine", "./assets/images/level1/Lvl01_coworker_jasmine.svg");
+        this.load.image("lee", "./assets/images/level1/Lvl01_boss_lee.svg");
 
-        let rebecca = this.load.image("rebecca", "./assets/images/level1/Lvl01_coworker_rebecca.svg");
-        let dylan = this.load.image("dylan", "./assets/images/level1/Lvl01_coworker_dylan.svg");
-        let jasmine = this.load.image("jasmine", "./assets/images/level1/Lvl01_coworker_jasmine.svg");
-        let lee = this.load.image("lee", "./assets/images/level1/Lvl01_boss_lee.svg");
         // load the silhouettes
         // rebecca
         this.load.image("shadow-rebecca-right", "./assets/images/level1/shadow/Shadow_rebecca_right.svg");
@@ -68,118 +67,44 @@ export class level1 extends Phaser.Scene {
         this.load.image("shadow-jasmine-wrong02", "./assets/images/level1/shadow/Shadow_jasmine_wrong02.svg");
         // lee 
         this.load.image("shadow-lee-right", "./assets/images/level1/shadow/Shadow_lee_right.svg");
-        this.load.image("shadow-lee-wrong01", "./assets/images/level1/shadow/Shadow_lee_wrong01.svg"); 
+        this.load.image("shadow-lee-wrong01", "./assets/images/level1/shadow/Shadow_lee_wrong01.svg");
         this.load.image("shadow-lee-wrong02", "./assets/images/level1/shadow/Shadow_lee_wrong02.svg");
-        
     }
-    
-    create() {
-        // const blur 
-        const blurState = window.blurValue; // récupère la valeur du bouton
-        const shouldBlur = (blurState === "non"); // "non" = flou activé
 
-        // initialisation of the keys
+    create() {
+        this.remainingCharacters = [...this.characters];
+        this.validatedCharacters = [];
+        this.currentCharacter = null;
+        this.selectedIndex = 1;
+        this.shadowImages = [];
+        this.shadowGraphics = [];
+
+        // KEYS
         this.cursors = this.input.keyboard.createCursorKeys();
-        this.keyCTRL = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.CTRL);
         this.keyNumPad0 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ZERO);
 
-        // add the background
+        // BACKGROUND
         const bg = this.add.image(0, 0, 'background_level1').setOrigin(0, 0);
-
-        // resize background
         bg.displayWidth = this.sys.game.config.width;
-        bg.displayHeight = this.sys.game.config.height;   
-        
-        // add the fixed images
+        bg.displayHeight = this.sys.game.config.height;
         const hand = this.add.image(150, 535, "hand");
 
-        // choose a random characters
-        const randomIndex = Phaser.Math.Between(0, this.characters.length - 1);
-        const currentCharacter = this.characters[randomIndex];
-        console.log(randomIndex)
-        console.log(currentCharacter)
-        
-        // add the image of the characters
-        this.characterImage = this.add.image(450, 405, currentCharacter.name);
+        // Gestion du flou
+        const applyBlur = (shouldBlur) => {
+            // flou sur décor, main et personnage seulement
+            [bg, this.characterImage, hand].forEach(obj => {
+                if (!obj || !obj.preFX) return;
+                obj.preFX.clear();
+                if (shouldBlur) obj.preFX.addBlur(1);
+            });
+        };
 
-        // add the bg blur
         document.addEventListener("blurChanged", (e) => {
-        const shouldBlurNow = (e.detail === "non");
-        if (shouldBlurNow) {
-            bg.preFX.clear();
-            bg.preFX.addBlur(1);
-        } else {
-            bg.preFX.clear();
-        }
-        
-        // add character blur
-        if (shouldBlurNow) {
-            this.characterImage.preFX.clear();
-            this.characterImage.preFX.addBlur(1);
-        } else {
-            this.characterImage.preFX.clear();
-        }
-
-        // add blurhand
-        if (shouldBlurNow) {
-            hand.preFX.clear();
-            hand.preFX.addBlur(1);
-        } else {
-            hand.preFX.clear();
-        }
+            const shouldBlurNow = (e.detail === "non");
+            applyBlur(shouldBlurNow);
         });
 
-        let shadows = currentCharacter.shadow;
-        
-        //randomize the silhouettes apparitions
-        shadows.sort(() => Math.random() - 0.5);
-
-        // add the silhouettes
-        for (let i = 0; i < 3; i++) {
-
-            //coordonnées des silhouettes
-            const x = 825;
-            const y = 135 + i * 200;
-
-            // Crée un objet Graphics (fond)
-            const graphics = this.add.graphics();
-
-            // Couleur de remplissage (fond)
-            graphics.fillStyle(0xF8E3CE, 1);
-
-            // Bordure (stroke-fond)
-            graphics.lineStyle(2, 0x633116, 1); // épaisseur, couleur, opacité
-
-            // Dessine un rectangle arrondi(border-radius)
-            const width = 175;
-            const height = 175;
-            const radius = 18;
-
-            graphics.fillRoundedRect(x - width / 2, y - height / 2, width, height, radius);
-            graphics.strokeRoundedRect(x - width / 2, y - height / 2, width, height, radius);
-
-            // Ajoute shadow
-            const shadowImage = this.add.image(x, y, shadows[i]).setScale(0.3);
-        }
-
-
-        //BTN "c'est parti!" QUI DECLENCHE TIMER
-
-        const graphics = this.add.graphics();
-        graphics.fillStyle(0xD9C667, 1); // couleur du fond
-        graphics.fillRoundedRect(440, 350, 170, 55, 25);
-
-        const timerButton = this.add.text(452, 360, "C'est parti !", { fill: 'white', backgroundColor: '#D9C667', fontSize: '32px', fontFamily: "dynapuff-condensed", borderRadius: "15" });
-
-        timerButton.setInteractive();
-
-        timerButton.on('pointerdown', () => {
-            monTimer.paused = false;
-            timerButton.setVisible(false);
-            graphics.setVisible(false);
-        });
-
-        //TIMER
+        // TIMER
         var chronoText;
         var monTimer;
         var chrono = 0;
@@ -193,8 +118,9 @@ export class level1 extends Phaser.Scene {
             loop: true
         });
 
-        function compteUneSeconde () {
-            chrono= chrono+1
+        function compteUneSeconde() {
+            chrono = chrono + 1;
+            chronoText.setText("Time: " + chrono);
         }
 
         chronoText = this.add.text(16, 100, "Time: 0", {
@@ -202,38 +128,111 @@ export class level1 extends Phaser.Scene {
             fill: "#FFFFFF"
         });
 
-        function compteUneSeconde () {
-            chrono= chrono+1;
-            chronoText.setText("Time: "+ chrono);
-        }
-
         var elapsed = monTimer.getElapsedSeconds();
-
         console.log('Temps écoulé :', elapsed, 's');
-    }
-    
-    update() {
-        // écoute des touches
-        if (this.cursors.left.isDown) {
-        console.log('Gauche');
-        }
-        if (this.cursors.right.isDown) {
-        console.log('Droite');
-        }
-        if (this.cursors.up.isDown) {
-        console.log('Haut');
-        }
-        if (this.cursors.down.isDown) {
-        console.log('Bas');
-        }
-        if (this.keyCTRL.isDown) {
-        console.log('CTRL');
-        }
-        if (this.keyNumPad0.isDown) {
-        console.log('NumPad0');
-        }
+
+        // harger un personnage
+        this.loadNewCharacter = () => {
+            if (this.characterImage) this.characterImage.destroy();
+            this.shadowImages.forEach(img => img.destroy());
+            this.shadowGraphics.forEach(g => g.destroy());
+            this.shadowImages = [];
+            this.shadowGraphics = [];
+
+            if (this.remainingCharacters.length === 0) {
+                console.log("Tous les personnages sont réussis !");
+                // STOP TIMER
+                monTimer.paused = true;
+                this.add.text(452, 360, "Fin du jeu !", {
+                    fontSize: "36px",
+                    fill: "#FFD700",
+                    fontFamily: "dynapuff-condensed"
+                }).setOrigin(0.5);
+                return;
+            }
+
+            const randomIndex = Phaser.Math.Between(0, this.remainingCharacters.length - 1);
+            this.currentCharacter = this.remainingCharacters[randomIndex];
+            this.characterImage = this.add.image(450, 405, this.currentCharacter.name);
+
+            const shuffledShadows = [...this.currentCharacter.shadow].sort(() => Math.random() - 0.5);
+
+            for (let i = 0; i < 3; i++) {
+                const x = 825;
+                const y = 135 + i * 200;
+
+                const graphics = this.add.graphics();
+                graphics.fillStyle(0xF8E3CE, 1);
+                graphics.lineStyle(2, 0x633116, 1);
+                graphics.fillRoundedRect(x - 87.5, y - 87.5, 175, 175, 18);
+                graphics.strokeRoundedRect(x - 87.5, y - 87.5, 175, 175, 18);
+                this.shadowGraphics.push(graphics);
+
+                // Silhouettes
+                const shadow = this.add.image(x, y, shuffledShadows[i]).setScale(0.3);
+                this.shadowImages.push(shadow);
+            }
+
+            this.selectedIndex = 1;
+            this.highlightSelectedShadow();
+            applyBlur(window.blurValue === "non"); // garde le flou si déjà activé
+        };
+
+        // Highlight
+        this.highlightSelectedShadow = () => {
+            this.shadowImages.forEach((img, index) => {
+                img.setTint(index === this.selectedIndex ? 0xFFD700 : 0xffffff);
+            });
+        };
+
+        // Validation 
+        this.validateSelection = () => {
+            const selectedShadowKey = this.shadowImages[this.selectedIndex].texture.key;
+            if (selectedShadowKey === this.currentCharacter.correctShadow) {
+                console.log("Correct !");
+                this.validatedCharacters.push(this.currentCharacter);
+                this.remainingCharacters = this.remainingCharacters.filter(c => c !== this.currentCharacter);
+            } else {
+                console.log("Incorrect, relancer ce personnage");
+            }
+            this.loadNewCharacter();
+        };
+
+        // BTN START
+        const graphics = this.add.graphics();
+        graphics.fillStyle(0xD9C667, 1);
+        graphics.fillRoundedRect(440, 350, 170, 55, 25);
+
+        const timerButton = this.add.text(452, 360, "C'est parti !", {
+            fill: 'white',
+            backgroundColor: '#D9C667',
+            fontSize: '32px',
+            fontFamily: "dynapuff-condensed",
+        }).setInteractive();
+
+        timerButton.on('pointerdown', () => {
+            monTimer.paused = false;
+            timerButton.destroy();
+            graphics.destroy();
+            this.loadNewCharacter();
+        });
     }
 
+    update() {
+        if (Phaser.Input.Keyboard.JustDown(this.cursors.up)) {
+            this.selectedIndex = Phaser.Math.Clamp(this.selectedIndex - 1, 0, 2);
+            this.highlightSelectedShadow();
+        }
+
+        if (Phaser.Input.Keyboard.JustDown(this.cursors.down)) {
+            this.selectedIndex = Phaser.Math.Clamp(this.selectedIndex + 1, 0, 2);
+            this.highlightSelectedShadow();
+        }
+
+        if (Phaser.Input.Keyboard.JustDown(this.keyNumPad0)) {
+            this.validateSelection();
+        }
+    }
 }
 
 console.log('level1');
