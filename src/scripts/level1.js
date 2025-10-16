@@ -92,15 +92,7 @@ export class level1 extends Phaser.Scene {
         
         // add the fixed images
         const hand = this.add.image(150, 535, "hand");
-
-        // choose a random characters
-        const randomIndex = Phaser.Math.Between(0, this.characters.length - 1);
-        const currentCharacter = this.characters[randomIndex];
-        console.log(randomIndex)
-        console.log(currentCharacter)
         
-        // add the image of the characters
-        this.characterImage = this.add.image(450, 405, currentCharacter.name);
 
         // add the bg blur
         document.addEventListener("blurChanged", (e) => {
