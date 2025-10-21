@@ -104,6 +104,9 @@ export class level1 extends Phaser.Scene {
             applyBlur(shouldBlurNow);
         });
 
+        //get username
+        const playerName = localStorage.getItem('user-input');
+
         // TIMER
         var chronoText;
         var monTimer;
@@ -131,7 +134,21 @@ export class level1 extends Phaser.Scene {
         var elapsed = monTimer.getElapsedSeconds();
         console.log('Temps écoulé :', elapsed, 's');
 
-        // harger un personnage
+        function saveScore(name, time) {
+            let scores = JSON.parse(localStorage.getItem("bestScores")) || [];
+
+            scores.push({ name, time });
+            scores.sort((a, b) => a.time - b.time); // + petit temps = meilleur score
+            scores = scores.slice(0, 5);
+
+            localStorage.setItem("bestScores", JSON.stringify(scores));
+        }
+
+        function getBestScores() {
+            return JSON.parse(localStorage.getItem("bestScores")) || [];
+        }
+
+        // charger un personnage
         this.loadNewCharacter = () => {
             if (this.characterImage) this.characterImage.destroy();
             this.shadowImages.forEach(img => img.destroy());
@@ -139,10 +156,16 @@ export class level1 extends Phaser.Scene {
             this.shadowImages = [];
             this.shadowGraphics = [];
 
+            //si tous réussi, alors fin du jeu
+
             if (this.remainingCharacters.length === 0) {
                 console.log("Tous les personnages sont réussis !");
                 // STOP TIMER
                 monTimer.paused = true;
+
+                //stock timer and username in localstorage
+                saveScore(playerName, chrono);
+                
                 this.add.text(452, 360, "Fin du jeu !", {
                     fontSize: "36px",
                     fill: "#FFD700",
@@ -185,11 +208,11 @@ export class level1 extends Phaser.Scene {
                 // Fond inchangé
                 g.fillStyle(0xF8E3CE, 1);
 
-                // Si c’est la sélection actuelle → bordure bleue
+                // Si c’est la sélection actuelle
                 if (index === this.selectedIndex) {
-                g.lineStyle(3, 0x000000, 1); // bleu vif
+                g.lineStyle(3, 0x000000, 1);
                 } else {
-                g.lineStyle(2, 0xE3B09D, 1); // blanc
+                g.lineStyle(2, 0xE3B09D, 1);
                 }
 
                 g.fillRoundedRect(825 - 87.5, 135 + index * 200 - 87.5, 175, 175, 18);
@@ -203,7 +226,7 @@ export class level1 extends Phaser.Scene {
             const selectedShadowKey = this.shadowImages[this.selectedIndex].texture.key;
             const isCorrect = selectedShadowKey === this.currentCharacter.correctShadow;
 
-            const color = isCorrect ? 0xD9C667 : 0xD96B52;; // vert ou rouge
+            const color = isCorrect ? 0xD9C667 : 0xD96B52;;
             const message = isCorrect ? "Correct !" : "Incorrect !";
 
             // Changer la bordure sélectionnée
