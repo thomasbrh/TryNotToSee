@@ -101,7 +101,7 @@ export class level1 extends Phaser.Scene {
 
         // KEYS
         this.cursors = this.input.keyboard.createCursorKeys();
-        this.keyNumPad0 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ZERO);
+        this.keyEnter = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
 
         // BACKGROUND
         const bg = this.add.image(0, 0, 'background_level1').setOrigin(0, 0);
@@ -304,7 +304,7 @@ export class level1 extends Phaser.Scene {
             this.highlightSelectedShadow();
         }
 
-        if (Phaser.Input.Keyboard.JustDown(this.keyNumPad0)) {
+        if (Phaser.Input.Keyboard.JustDown(this.keyEnter)) {
             if (!this.started && this.timerButton) {
                 this.timerButton.emit('pointerdown');
             } else {
