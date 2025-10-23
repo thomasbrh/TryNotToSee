@@ -37,16 +37,18 @@
         <div class="fixed">
             <div class="flex-btn">
                 <button class="sound-button box-shadow" id="sound-btn" type="button">
-                    <img id="pause" class="" src="assets/images/sound/sound-off.svg" alt="sound off button"> 
-                    <img id="play" class="disabled" src="assets/images/sound/sound-on.svg" alt="sound on button"> 
+                    <img id="pause" class="" src="assets/images/sound/sound-off.svg" aria-label="Bouton pour désactiver le son" alt="sound off button"> 
+                    <img id="play" class="disabled" src="assets/images/sound/sound-on.svg" aria-label="Bouton pour activer le son" alt="sound on button"> 
                 </button>
-                <!-- + -->
-                <button class="sound-button box-shadow" id="volume-btn-up" type="button">
-                    <img id="up" src="assets/images/sound/sound+.svg" alt="sound up button">
-                </button>
+
                 <!-- - -->
-                <button class="sound-button box-shadow" id="volume-btn-down" type="button">
-                    <img id="down" src="assets/images/sound/sound-.svg" alt="sound down button">
+                <button class="sound-button box-shadow" id="volume-btn-down" aria-label="Bouton pour diminuer le son" type="button">
+                    <img id="down" src="assets/images/sound/sound-.svg"  alt="sound down button">
+                </button>
+
+                <!-- + -->
+                <button class="sound-button box-shadow" id="volume-btn-up" aria-label="Bouton pour augmenter le son" type="button">
+                    <img id="up" src="assets/images/sound/sound+.svg" alt="sound up button">
                 </button>
             </div>
         </div>
@@ -62,7 +64,7 @@
 
             <form class="form-user-input" id="user-form">
                 <label class="label-user-input rotate" for="user-input">Pseudo :</label>
-                <input class="username-input box-shadow rotate" id="user-input" type="text" placeholder="Entrez votre pseudo" required>
+                <input class="username-input box-shadow rotate" id="user-input" aria-labelledby="label-user-input" type="text" placeholder="Entrez votre pseudo" required>
                 
                 <!-- btn play -->
                 <button onclick="window.location.href='/pages/blur.html'" class="btn start-button box-shadow rotate" id="user-submit" type="submit">Jouer</button>

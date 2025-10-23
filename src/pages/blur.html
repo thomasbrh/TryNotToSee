@@ -38,16 +38,18 @@
         <div class="fixed">
             <div class="flex-btn">
                 <button class="sound-button box-shadow" id="sound-btn" type="button">
-                    <img id="pause" class="" src="../assets/images/sound/sound-off.svg" alt="sound off button"> 
-                    <img id="play" class="disabled" src="../assets/images/sound/sound-on.svg" alt="sound on button"> 
+                    <img id="pause" class="" src="../assets/images/sound/sound-off.svg" aria-label="Bouton pour désactiver le son" alt="sound off button"> 
+                    <img id="play" class="disabled" src="../assets/images/sound/sound-on.svg" aria-label="Bouton pour activer le son" alt="sound on button"> 
                 </button>
-                <!-- + -->
-                <button class="sound-button box-shadow" id="volume-btn-up" type="button">
-                    <img id="up" src="../assets/images/sound/sound+.svg" alt="sound up button">
-                </button>
+
                 <!-- - -->
-                <button class="sound-button box-shadow" id="volume-btn-down" type="button">
-                    <img id="down" src="../assets/images/sound/sound-.svg" alt="sound down button">
+                <button class="sound-button box-shadow" id="volume-btn-down" aria-label="Bouton pour diminuer le son" type="button">
+                    <img id="down" src="../assets/images/sound/sound-.svg"  alt="sound down button">
+                </button>
+
+                <!-- + -->
+                <button class="sound-button box-shadow" id="volume-btn-up" aria-label="Bouton pour augmenter le son" type="button">
+                    <img id="up" src="../assets/images/sound/sound+.svg" alt="sound up button">
                 </button>
             </div>
         </div>
@@ -62,12 +64,12 @@
             <div class="bg__flou"></div>
             
             <div class="home__content">
-                <h1 class="titre__home">Êtes&nbsp;vous<br>mal-voyant&nbsp;?</h1>
+                <h1 class="titre__home" aria-live="polite">Êtes&nbsp;vous<br>mal-voyant&nbsp;?</h1>
                 <!-- btn oui/non -->
  
-                <button class="toggle box-shadow rotate">
-                    <span class="label" data-value="oui">OUI</span>
-                    <span class="label" data-value="non">NON</span>
+                <button class="toggle box-shadow rotate" aria-label="Bouton oui ou non">
+                    <span class="label" data-value="oui" aria-label="oui">OUI</span>
+                    <span class="label" data-value="non" aria-label="non">NON</span>
                     <div class="handle"></div>
                 </button>
         
