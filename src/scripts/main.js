@@ -10,6 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 import './base.js';
 import './home.js';
 import './blur.js';
+import './score.js';
 import {level1} from './level1.js';
 import {level2} from './level2.js';
 

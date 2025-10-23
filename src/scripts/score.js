@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const bestScores = JSON.parse(localStorage.getItem("bestScores")) || [];
 
   if (bestScores.length === 0) {
-    scoreBody.innerHTML = `<tr><td colspan="3">Aucun score enregistré.</td></tr>`;
+    scoreBody.innerHTML = `<tr><td colspan="3">Aucun score enregistré</td></tr>`;
     return;
   }
 

@@ -1,3 +1,20 @@
+var monTimer;
+var chronoText;
+        var chrono = 0;
+
+//get username
+const playerName = localStorage.getItem('user-input');
+
+function saveScore(name, time) {
+    let scores = JSON.parse(localStorage.getItem("bestScores")) || [];
+
+    scores.push({ name, time });
+    scores.sort((a, b) => a.time - b.time); // + petit temps = meilleur score
+    scores = scores.slice(0, 10);
+
+    localStorage.setItem("bestScores", JSON.stringify(scores));
+}
+
 export class level1 extends Phaser.Scene {
     constructor() {
         super('level1');
@@ -104,13 +121,7 @@ export class level1 extends Phaser.Scene {
             applyBlur(shouldBlurNow);
         });
 
-        //get username
-        const playerName = localStorage.getItem('user-input');
-
         // TIMER
-        var chronoText;
-        var monTimer;
-        var chrono = 0;
 
         monTimer = this.time.addEvent({
             delay: 1000,
@@ -134,16 +145,6 @@ export class level1 extends Phaser.Scene {
         var elapsed = monTimer.getElapsedSeconds();
         console.log('Temps écoulé :', elapsed, 's');
 
-        function saveScore(name, time) {
-            let scores = JSON.parse(localStorage.getItem("bestScores")) || [];
-
-            scores.push({ name, time });
-            scores.sort((a, b) => a.time - b.time); // + petit temps = meilleur score
-            scores = scores.slice(0, 5);
-
-            localStorage.setItem("bestScores", JSON.stringify(scores));
-        }
-
         function getBestScores() {
             return JSON.parse(localStorage.getItem("bestScores")) || [];
         }
@@ -158,27 +159,15 @@ export class level1 extends Phaser.Scene {
 
             //si tous réussi, alors fin du jeu
 
-            if (this.remainingCharacters.length === 0) {
-                console.log("Tous les personnages sont réussis !");
-                // STOP TIMER
-                monTimer.paused = true;
-
-                //stock timer and username in localstorage
-                saveScore(playerName, chrono);
-                
-                this.add.text(452, 360, "Fin du jeu !", {
-                    fontSize: "36px",
-                    fill: "#FFD700",
-                    fontFamily: "dynapuff-condensed"
-                }).setOrigin(0.5);
-                return;
-            }
+            
 
             const randomIndex = Phaser.Math.Between(0, this.remainingCharacters.length - 1);
             this.currentCharacter = this.remainingCharacters[randomIndex];
-            this.characterImage = this.add.image(450, 405, this.currentCharacter.name);
-
-            const shuffledShadows = [...this.currentCharacter.shadow].sort(() => Math.random() - 0.5);
+            let shuffledShadows = [];
+            if (this.currentCharacter) {
+                this.characterImage = this.add.image(450, 405, this.currentCharacter.name);
+                shuffledShadows = [...this.currentCharacter.shadow].sort(() => Math.random() - 0.5);
+            }
 
             for (let i = 0; i < 3; i++) {
                 const x = 825;
@@ -291,6 +280,22 @@ export class level1 extends Phaser.Scene {
 
         if (Phaser.Input.Keyboard.JustDown(this.keyNumPad0)) {
             this.validateSelection();
+        }
+
+        if (this.remainingCharacters.length === 0 && !monTimer.paused) {
+            console.log("Tous les personnages sont réussis !");
+            // STOP TIMER
+            monTimer.paused = true;
+
+            //stock timer and username in localstorage
+            saveScore(playerName, chrono);
+                
+            this.add.text(452, 360, "Fin du jeu !", {
+                fontSize: "36px",
+                fill: "#FFD700",
+                fontFamily: "dynapuff-condensed"
+            }).setOrigin(0.5);
+            return;
         }
     }
 }
