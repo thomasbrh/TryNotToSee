@@ -45,30 +45,30 @@ export class level1 extends Phaser.Scene {
         ];
 
         // load the images
-        this.load.image("hand", "./assets/images/level1/Lvl01_hand.svg");
-        this.load.image("background_level1", "./assets/images/level1/Lvl01_background.webp");
-        this.load.image("rebecca", "./assets/images/level1/Lvl01_coworker_rebecca.svg");
-        this.load.image("dylan", "./assets/images/level1/Lvl01_coworker_dylan.svg");
-        this.load.image("jasmine", "./assets/images/level1/Lvl01_coworker_jasmine.svg");
-        this.load.image("lee", "./assets/images/level1/Lvl01_boss_lee.svg");
+        this.load.image("hand", "../assets/images/level1/Lvl01_hand.svg");
+        this.load.image("background_level1", "../assets/images/level1/Lvl01_background.webp");
+        this.load.image("rebecca", "../assets/images/level1/Lvl01_coworker_rebecca.svg");
+        this.load.image("dylan", "../assets/images/level1/Lvl01_coworker_dylan.svg");
+        this.load.image("jasmine", "../assets/images/level1/Lvl01_coworker_jasmine.svg");
+        this.load.image("lee", "../assets/images/level1/Lvl01_boss_lee.svg");
 
         // load the silhouettes
         // rebecca
-        this.load.image("shadow-rebecca-right", "./assets/images/level1/shadow/Shadow_rebecca_right.svg");
-        this.load.image("shadow-rebecca-wrong01", "./assets/images/level1/shadow/Shadow_rebecca_wrong01.svg");
-        this.load.image("shadow-rebecca-wrong02", "./assets/images/level1/shadow/Shadow_rebecca_wrong02.svg");
+        this.load.image("shadow-rebecca-right", "../assets/images/level1/shadow/Shadow_rebecca_right.svg");
+        this.load.image("shadow-rebecca-wrong01", "../assets/images/level1/shadow/Shadow_rebecca_wrong01.svg");
+        this.load.image("shadow-rebecca-wrong02", "../assets/images/level1/shadow/Shadow_rebecca_wrong02.svg");
         // dylan 
-        this.load.image("shadow-dylan-right", "./assets/images/level1/shadow/Shadow_dylan_right.svg");
-        this.load.image("shadow-dylan-wrong01", "./assets/images/level1/shadow/Shadow_dylan_wrong01.svg");
-        this.load.image("shadow-dylan-wrong02", "./assets/images/level1/shadow/Shadow_dylan_wrong02.svg");
+        this.load.image("shadow-dylan-right", "../assets/images/level1/shadow/Shadow_dylan_right.svg");
+        this.load.image("shadow-dylan-wrong01", "../assets/images/level1/shadow/Shadow_dylan_wrong01.svg");
+        this.load.image("shadow-dylan-wrong02", "../assets/images/level1/shadow/Shadow_dylan_wrong02.svg");
         // jasmine 
-        this.load.image("shadow-jasmine-right", "./assets/images/level1/shadow/Shadow_jasmine_right.svg");
-        this.load.image("shadow-jasmine-wrong01", "./assets/images/level1/shadow/Shadow_jasmine_wrong01.svg");
-        this.load.image("shadow-jasmine-wrong02", "./assets/images/level1/shadow/Shadow_jasmine_wrong02.svg");
+        this.load.image("shadow-jasmine-right", "../assets/images/level1/shadow/Shadow_jasmine_right.svg");
+        this.load.image("shadow-jasmine-wrong01", "../assets/images/level1/shadow/Shadow_jasmine_wrong01.svg");
+        this.load.image("shadow-jasmine-wrong02", "../assets/images/level1/shadow/Shadow_jasmine_wrong02.svg");
         // lee 
-        this.load.image("shadow-lee-right", "./assets/images/level1/shadow/Shadow_lee_right.svg");
-        this.load.image("shadow-lee-wrong01", "./assets/images/level1/shadow/Shadow_lee_wrong01.svg");
-        this.load.image("shadow-lee-wrong02", "./assets/images/level1/shadow/Shadow_lee_wrong02.svg");
+        this.load.image("shadow-lee-right", "../assets/images/level1/shadow/Shadow_lee_right.svg");
+        this.load.image("shadow-lee-wrong01", "../assets/images/level1/shadow/Shadow_lee_wrong01.svg");
+        this.load.image("shadow-lee-wrong02", "../assets/images/level1/shadow/Shadow_lee_wrong02.svg");
     }
 
     create() {
@@ -171,9 +171,10 @@ export class level1 extends Phaser.Scene {
                     fill: "#FFD700",
                     fontFamily: "dynapuff-condensed"
                     }).setOrigin(0.5);
+
+                    window.location.href='../pages/score.html';
                     return;
                 }
-                window.location.href='../score.html';
 
             const randomIndex = Phaser.Math.Between(0, this.remainingCharacters.length - 1);
             this.currentCharacter = this.remainingCharacters[randomIndex];
