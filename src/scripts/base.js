@@ -1,19 +1,3 @@
-// scene gestion
-const homePage = document.getElementById('home-page');
-const goPlay = document.getElementById('user-submit');
-
-const blurPage = document.getElementById('blur-page');
-const goGame = document.getElementById('start-game');
-
-
-/* goPlay.addEventListener('click', () => {
-  blurPage.classList.remove('disabled');
-  homePage.classList.add('disabled');
-}); */
-
-
-
-
 // add music
 const music = document.getElementById('music');
 const gameContainer = document.getElementById('game-container');

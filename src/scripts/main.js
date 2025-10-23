@@ -1,5 +1,4 @@
 'use strict';
-
 /* import Lib */
 /* import animation GSAP */
 import { gsap } from 'gsap';
