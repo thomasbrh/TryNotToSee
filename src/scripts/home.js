@@ -5,6 +5,8 @@ const form = document.getElementById('user-form');
 form.addEventListener('submit', function(event) {
     event.preventDefault();
 
+    window.location.href = '/pages/blur.html';
+
     console.log('test');
 
     // Get the entered username
