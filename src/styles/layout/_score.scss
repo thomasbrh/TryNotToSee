@@ -13,8 +13,13 @@ td{
 }
 
 .animation-bg_blur{
-    filter: blur(7px);
-    
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 986px;
+    height: 675px;
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px); /* Pour Safari */
 }
 
 .score_bg{
@@ -25,6 +30,7 @@ td{
     height: 505px;
     padding-top: 40px;
     align-items: center;
+    z-index: 1;
 }
 
 tr{
