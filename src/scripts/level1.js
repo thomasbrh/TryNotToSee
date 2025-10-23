@@ -252,11 +252,10 @@ export class level1 extends Phaser.Scene {
 
             // Afficher un texte temporaire
             const resultText = this.add.text(493, 180, message, {
-                fontSize: '36px',
-                fill: isCorrect ? '0xD9C667' : '0xD96B52;',
-                /* fill: isCorrect ? '#D9C667' : '#D96B52', */
+                fontSize: '72px',
+                fill: isCorrect ? '#D9C667' : '#E3B09D',
                 fontFamily: "dynapuff-condensed"
-            }).setOrigin(0.5);
+            }).setOrigin(0.6);
 
             // Marquer le personnage si bon
             if (isCorrect) {
