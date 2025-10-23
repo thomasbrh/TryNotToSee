@@ -5,11 +5,17 @@
     font-size: 64px;
     margin: auto;
     justify-content: center;
-    /* margin-bottom: 10px; */
 }
 
 td{
     color: #DAC665;
+    font-size: 20px;
+}
+
+th{
+    font-size: 20px;
+    font-family: $font-primary;
+    color: #D96B52;
 }
 
 .animation-bg_blur{
@@ -48,9 +54,9 @@ tr{
 table{
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    /* gap: 5px; */
     margin: auto;
-    height: 320px; /* 250px */
+    height: 336px; /* 250px */
     overflow-y: scroll;
     padding: 20px 64px 20px 64px;
 }
