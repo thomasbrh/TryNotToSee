@@ -1,16 +1,14 @@
 'use strict';
 
-document.addEventListener("DOMContentLoaded", () => {
-  const scoreBody = document.getElementById("score-body");
+const scoreBody = document.getElementById("score-body");
 
-  const bestScores = JSON.parse(localStorage.getItem("bestScores")) || [];
+const bestScores = JSON.parse(localStorage.getItem("bestScores")) || [];
 
-  if (bestScores.length === 0) {
+if (bestScores.length === 0) {
     scoreBody.innerHTML = `<tr><td colspan="3">Aucun score enregistré</td></tr>`;
-    return;
-  }
+}
 
-  bestScores.forEach((entry, index) => {
+bestScores.forEach((entry, index) => {
     const row = document.createElement("tr");
 
     const nameCell = document.createElement("td");
@@ -23,5 +21,4 @@ document.addEventListener("DOMContentLoaded", () => {
     row.appendChild(timeCell);
 
     scoreBody.appendChild(row);
-  });
 });

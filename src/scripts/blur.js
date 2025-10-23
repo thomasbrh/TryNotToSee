@@ -1,9 +1,7 @@
 "use strict";
-
 // Gestion du blur
 window.blurValue = "oui"; // état initial
 
-document.addEventListener("DOMContentLoaded", () => {
     const toggle = document.querySelector(".toggle");
     const handle = document.querySelector(".handle");
     const labels = document.querySelectorAll(".label");
@@ -87,9 +85,32 @@ document.addEventListener("DOMContentLoaded", () => {
         // Éviter que le click déclenche un toggle après un drag
         if (isDragging) return;
         const newValue = getCurrentValue() === "oui" ? "non" : "oui";
+        localStorage.setItem('blur-value', getCurrentValue());
         setState(newValue);
     });
 
     // Init
     setState("oui");
+
+
+/* import Lib */
+/* import animation GSAP */
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
+// animation base
+gsap.to('.logo-animation', {
+    scale: 1.05,
+    y: 10,
+    rotation: 4,
+    duration: 4,
+    yoyo: true,
+    repeat: -1,
+});
+  
+gsap.to('.rotate', {
+    '--scale': 1.1,
+    duration: 1.2,
+    yoyo: true,
+    repeat: -1,
 });

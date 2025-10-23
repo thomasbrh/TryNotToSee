@@ -1,9 +1,12 @@
 var monTimer;
 var chronoText;
-        var chrono = 0;
+var chrono = 0;
 
 //get username
 const playerName = localStorage.getItem('user-input');
+
+window.blurValue = localStorage.getItem('blur-value');
+console.log(window.blurValue);
 
 function saveScore(name, time) {
     let scores = JSON.parse(localStorage.getItem("bestScores")) || [];
@@ -62,30 +65,30 @@ export class level1 extends Phaser.Scene {
         ];
 
         // load the images
-        this.load.image("hand", "./assets/images/level1/Lvl01_hand.svg");
-        this.load.image("background_level1", "./assets/images/level1/Lvl01_background.webp");
-        this.load.image("rebecca", "./assets/images/level1/Lvl01_coworker_rebecca.svg");
-        this.load.image("dylan", "./assets/images/level1/Lvl01_coworker_dylan.svg");
-        this.load.image("jasmine", "./assets/images/level1/Lvl01_coworker_jasmine.svg");
-        this.load.image("lee", "./assets/images/level1/Lvl01_boss_lee.svg");
+        this.load.image("hand", "../assets/images/level1/Lvl01_hand.svg");
+        this.load.image("background_level1", "../assets/images/level1/Lvl01_background.webp");
+        this.load.image("rebecca", "../assets/images/level1/Lvl01_coworker_rebecca.svg");
+        this.load.image("dylan", "../assets/images/level1/Lvl01_coworker_dylan.svg");
+        this.load.image("jasmine", "../assets/images/level1/Lvl01_coworker_jasmine.svg");
+        this.load.image("lee", "../assets/images/level1/Lvl01_boss_lee.svg");
 
         // load the silhouettes
         // rebecca
-        this.load.image("shadow-rebecca-right", "./assets/images/level1/shadow/Shadow_rebecca_right.svg");
-        this.load.image("shadow-rebecca-wrong01", "./assets/images/level1/shadow/Shadow_rebecca_wrong01.svg");
-        this.load.image("shadow-rebecca-wrong02", "./assets/images/level1/shadow/Shadow_rebecca_wrong02.svg");
+        this.load.image("shadow-rebecca-right", "../assets/images/level1/shadow/Shadow_rebecca_right.svg");
+        this.load.image("shadow-rebecca-wrong01", "../assets/images/level1/shadow/Shadow_rebecca_wrong01.svg");
+        this.load.image("shadow-rebecca-wrong02", "../assets/images/level1/shadow/Shadow_rebecca_wrong02.svg");
         // dylan 
-        this.load.image("shadow-dylan-right", "./assets/images/level1/shadow/Shadow_dylan_right.svg");
-        this.load.image("shadow-dylan-wrong01", "./assets/images/level1/shadow/Shadow_dylan_wrong01.svg");
-        this.load.image("shadow-dylan-wrong02", "./assets/images/level1/shadow/Shadow_dylan_wrong02.svg");
+        this.load.image("shadow-dylan-right", "../assets/images/level1/shadow/Shadow_dylan_right.svg");
+        this.load.image("shadow-dylan-wrong01", "../assets/images/level1/shadow/Shadow_dylan_wrong01.svg");
+        this.load.image("shadow-dylan-wrong02", "../assets/images/level1/shadow/Shadow_dylan_wrong02.svg");
         // jasmine 
-        this.load.image("shadow-jasmine-right", "./assets/images/level1/shadow/Shadow_jasmine_right.svg");
-        this.load.image("shadow-jasmine-wrong01", "./assets/images/level1/shadow/Shadow_jasmine_wrong01.svg");
-        this.load.image("shadow-jasmine-wrong02", "./assets/images/level1/shadow/Shadow_jasmine_wrong02.svg");
+        this.load.image("shadow-jasmine-right", "../assets/images/level1/shadow/Shadow_jasmine_right.svg");
+        this.load.image("shadow-jasmine-wrong01", "../assets/images/level1/shadow/Shadow_jasmine_wrong01.svg");
+        this.load.image("shadow-jasmine-wrong02", "../assets/images/level1/shadow/Shadow_jasmine_wrong02.svg");
         // lee 
-        this.load.image("shadow-lee-right", "./assets/images/level1/shadow/Shadow_lee_right.svg");
-        this.load.image("shadow-lee-wrong01", "./assets/images/level1/shadow/Shadow_lee_wrong01.svg");
-        this.load.image("shadow-lee-wrong02", "./assets/images/level1/shadow/Shadow_lee_wrong02.svg");
+        this.load.image("shadow-lee-right", "../assets/images/level1/shadow/Shadow_lee_right.svg");
+        this.load.image("shadow-lee-wrong01", "../assets/images/level1/shadow/Shadow_lee_wrong01.svg");
+        this.load.image("shadow-lee-wrong02", "../assets/images/level1/shadow/Shadow_lee_wrong02.svg");
     }
 
     create() {
@@ -98,7 +101,7 @@ export class level1 extends Phaser.Scene {
 
         // KEYS
         this.cursors = this.input.keyboard.createCursorKeys();
-        this.keyNumPad0 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ZERO);
+        this.keyEnter = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
 
         // BACKGROUND
         const bg = this.add.image(0, 0, 'background_level1').setOrigin(0, 0);
@@ -116,10 +119,11 @@ export class level1 extends Phaser.Scene {
             });
         };
 
-        document.addEventListener("blurChanged", (e) => {
-            const shouldBlurNow = (e.detail === "non");
-            applyBlur(shouldBlurNow);
-        });
+        // document.addEventListener("blurChanged", (e) => {
+        //     const shouldBlurNow = (e.detail === "non");
+        //     applyBlur(shouldBlurNow);
+        // });
+        applyBlur(window.blurValue);
 
         // TIMER
 
@@ -159,7 +163,23 @@ export class level1 extends Phaser.Scene {
 
             //si tous réussi, alors fin du jeu
 
-            
+            if (this.remainingCharacters.length === 0) {
+                console.log("Tous les personnages sont réussis !");
+                // STOP TIMER
+                monTimer.paused = true;
+
+                //stock timer and username in localstorage
+                saveScore(playerName, chrono);
+                
+                this.add.text(452, 360, "Fin du jeu !", {
+                    fontSize: "36px",
+                    fill: "#FFD700",
+                    fontFamily: "dynapuff-condensed"
+                    }).setOrigin(0.5);
+
+                    window.location.href='../pages/score.html';
+                    return;
+                }
 
             const randomIndex = Phaser.Math.Between(0, this.remainingCharacters.length - 1);
             this.currentCharacter = this.remainingCharacters[randomIndex];
@@ -252,19 +272,25 @@ export class level1 extends Phaser.Scene {
         graphics.fillStyle(0xD9C667, 1);
         graphics.fillRoundedRect(440, 350, 170, 55, 25);
 
-        const timerButton = this.add.text(452, 360, "C'est parti !", {
+        this.timerButton = this.add.text(452, 360, "C'est parti !", {
             fill: 'white',
             backgroundColor: '#D9C667',
             fontSize: '32px',
             fontFamily: "dynapuff-condensed",
         }).setInteractive();
 
-        timerButton.on('pointerdown', () => {
+        this.started = false;
+
+        const startGame = () => {
+            if (this.started) return;
+            this.started = true;
             monTimer.paused = false;
-            timerButton.destroy();
-            graphics.destroy();
+            if (this.timerButton) this.timerButton.destroy();
+            if (graphics) graphics.destroy();
             this.loadNewCharacter();
-        });
+        };
+
+        this.timerButton.on('pointerdown', startGame);
     }
 
     update() {
@@ -278,8 +304,12 @@ export class level1 extends Phaser.Scene {
             this.highlightSelectedShadow();
         }
 
-        if (Phaser.Input.Keyboard.JustDown(this.keyNumPad0)) {
-            this.validateSelection();
+        if (Phaser.Input.Keyboard.JustDown(this.keyEnter)) {
+            if (!this.started && this.timerButton) {
+                this.timerButton.emit('pointerdown');
+            } else {
+                this.validateSelection();
+            }
         }
 
         if (this.remainingCharacters.length === 0 && !monTimer.paused) {
