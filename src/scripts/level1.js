@@ -141,7 +141,7 @@ export class level1 extends Phaser.Scene {
             chronoText.setText("Time: " + chrono);
         }
 
-        chronoText = this.add.text(16, 100, "Time: 0", {
+        chronoText = this.add.text(40, 60, "Time: 0", {
             fontSize: "24px",
             fill: "#FFFFFF"
         });
