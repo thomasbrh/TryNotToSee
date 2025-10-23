@@ -169,9 +169,6 @@ export class level1 extends Phaser.Scene {
                 console.log("Tous les personnages sont réussis !");
                 // STOP TIMER
                 monTimer.paused = true;
-
-                //stock timer and username in localstorage
-                saveScore(playerName, chrono);
                 
                 this.add.text(452, 360, "Fin du jeu !", {
                     fontSize: "72px",
@@ -254,7 +251,7 @@ export class level1 extends Phaser.Scene {
             // Afficher un texte temporaire
             const resultText = this.add.text(493, 180, message, {
                 fontSize: '72px',
-                fill: isCorrect ? '#D9C667' : '#E3B09D',
+                fill: isCorrect ? '#D9C667' : '#e7c8bdff',
                 fontFamily: "dynapuff-condensed"
             }).setOrigin(0.6);
 
