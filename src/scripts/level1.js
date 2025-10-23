@@ -252,19 +252,25 @@ export class level1 extends Phaser.Scene {
         graphics.fillStyle(0xD9C667, 1);
         graphics.fillRoundedRect(440, 350, 170, 55, 25);
 
-        const timerButton = this.add.text(452, 360, "C'est parti !", {
+        this.timerButton = this.add.text(452, 360, "C'est parti !", {
             fill: 'white',
             backgroundColor: '#D9C667',
             fontSize: '32px',
             fontFamily: "dynapuff-condensed",
         }).setInteractive();
 
-        timerButton.on('pointerdown', () => {
+        this.started = false;
+
+        const startGame = () => {
+            if (this.started) return;
+            this.started = true;
             monTimer.paused = false;
-            timerButton.destroy();
-            graphics.destroy();
+            if (this.timerButton) this.timerButton.destroy();
+            if (graphics) graphics.destroy();
             this.loadNewCharacter();
-        });
+        };
+
+        this.timerButton.on('pointerdown', startGame);
     }
 
     update() {
@@ -279,7 +285,11 @@ export class level1 extends Phaser.Scene {
         }
 
         if (Phaser.Input.Keyboard.JustDown(this.keyNumPad0)) {
-            this.validateSelection();
+            if (!this.started && this.timerButton) {
+                this.timerButton.emit('pointerdown');
+            } else {
+                this.validateSelection();
+            }
         }
 
         if (this.remainingCharacters.length === 0 && !monTimer.paused) {
