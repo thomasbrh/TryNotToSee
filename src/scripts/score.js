@@ -5,20 +5,20 @@ const scoreBody = document.getElementById("score-body");
 const bestScores = JSON.parse(localStorage.getItem("bestScores")) || [];
 
 if (bestScores.length === 0) {
-  scoreBody.innerHTML = `<tr><td colspan="3">Aucun score enregistré</td></tr>`;
+    scoreBody.innerHTML = `<tr><td colspan="3">Aucun score enregistré</td></tr>`;
 }
 
 bestScores.forEach((entry, index) => {
-  const row = document.createElement("tr");
+    const row = document.createElement("tr");
 
-  const nameCell = document.createElement("td");
-  const timeCell = document.createElement("td");
+    const nameCell = document.createElement("td");
+    const timeCell = document.createElement("td");
 
-  nameCell.textContent = entry.name;
-  timeCell.textContent = entry.time;
+    nameCell.textContent = entry.name;
+    timeCell.textContent = entry.time;
 
-  row.appendChild(nameCell);
-  row.appendChild(timeCell);
+    row.appendChild(nameCell);
+    row.appendChild(timeCell);
 
-  scoreBody.appendChild(row);
+    scoreBody.appendChild(row);
 });

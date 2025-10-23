@@ -31,11 +31,11 @@ gsap.to('.logo-animation', {
     duration: 4,
     yoyo: true,
     repeat: -1,
-  });
-  
-  gsap.to('.rotate', {
+});
+
+gsap.to('.rotate', {
     '--scale': 1.1,
     duration: 1.2,
     yoyo: true,
     repeat: -1,
-  });
+});
