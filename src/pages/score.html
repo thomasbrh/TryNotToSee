@@ -49,19 +49,26 @@
     </div>
   </div>
 
-  <section id="score-label" class="scene">
-    <h1>Best Score</h1>
-    <table id="scoreboard">
-      <thead>
-        <tr>
-          <th>Pseudo</th>
-          <th>Temps (s)</th>
-        </tr>
-      </thead>
-      <tbody id="score-body"></tbody>
-    </table>
 
-   <button onclick="window.location.href='../index.html'">Retour à l’accueil</button>      
-  </section>
+  <section id="home-page " class="home-body scene">
+            <video class="animation-bg animation-bg__blur" autoplay loop muted playsinline>
+                <source src="../assets/images/Animation-bg_1.mp4" type="video/mp4" />
+            </video>
+
+          <section class="score__bg texte">
+            <h1 >Best Score</h1>
+            <table id="scoreboard">
+              <thead>
+                <tr class="score__design">
+                  <th>Pseudo</th>
+                  <th>Temps (s)</th>
+                </tr>
+              </thead>
+              <tbody id="score-body"></tbody>
+            </table>
+          </section>
+
+            <button onclick="window.location.href='../index.html'">Retour à l’accueil</button>
+        </section>
 </body>
 </html>
