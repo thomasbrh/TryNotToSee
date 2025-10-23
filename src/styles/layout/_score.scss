@@ -1,0 +1,68 @@
+.title{
+    display: flex;
+    color: #D96B52;
+    font-family: $font-primary;
+    font-size: 64px;
+    margin: auto;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+td{
+    color: #DAC665;
+}
+
+.animation-bg_blur{
+    filter: blur(7px);
+    
+}
+
+.score_bg{
+    margin: auto;
+    background-color: #F7E3CF;
+    border-radius: 30px;
+    width: 679px;
+    height: 505px;
+    padding-top: 40px;
+    align-items: center;
+}
+
+tr{
+    display: flex;
+    flex-direction: row;
+    gap: 336px;
+    background-color: white;
+    border: solid 2px #DAC665;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 10px;
+
+}
+
+table{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: auto;
+    height: 250px;
+    overflow-y: scroll;
+    padding: 20px;
+
+}
+
+.flex_parents{
+    display: flex;
+    flex-direction: column;
+}
+
+.btn_score{
+    font-size: 20px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+
+}
+
+td{
+    font-family: $font-primary;
+}

@@ -55,23 +55,29 @@
 
 
 		<!-- score page -->
-		<section id="score-label" class="scene">
-			<h1>Best Score</h1>
+		<section id="score-label" class="scene flex_parents">
+			<video class="animation-bg animation-bg_blur" autoplay loop muted playsinline>
+                <source src="../assets/images/Animation-bg_1.mp4" type="video/mp4" />
+            </video>
+			<div class="score_bg">
+				<h1 class="title">Best Score</h1>
 
-			<table id="scoreboard">
+				<table id="scoreboard">
 
-			<thead>
-				<tr>
-				<th>Pseudo</th>
-				<th>Temps (s)</th>
-				</tr>
-			</thead>
+					<thead>
+						<tr>
+							<th>Pseudo</th>
+							<th>Temps (s)</th>
+						</tr>
+					</thead>
 
-			<tbody id="score-body"></tbody>
+					<tbody  id="score-body"></tbody>
 
-			</table>
+				</table>
+				<button class="btn btn_score" onclick="window.location.href='../index.html'">Retour à l’accueil</button>   
+			</div>
 
-			<button onclick="window.location.href='../index.html'">Retour à l’accueil</button>      
+			   
 		</section>
 	</body>
 </html>
