@@ -2,18 +2,23 @@
 // Gestion du blur
 window.blurValue = "oui"; // état initial
 
-    const toggle = document.querySelector(".toggle");
-    const handle = document.querySelector(".handle");
+    const toggle = document.querySelector(".toggle"); // on | off
+    const handle = document.querySelector(".handle"); 
+    // choix "oui"/"non"
     const labels = document.querySelectorAll(".label");
-    const bgHome = document.querySelector(".bg__home");
-    const bgFlou = document.querySelector(".bg__flou");
+    //img bg normal
+    const bgHome = document.querySelector(".bg__home"); 
+    // img bg floutée
+    const bgFlou = document.querySelector(".bg__flou"); 
 
+    // Variables liées au déplacement du curseur
     let isDragging = false;
     let startX = 0;
     let handleX = 0;
     const minLeft = -1;
     const maxLeft = 102; // Position max droite du handle
 
+    // Fonction qui applique un état de flou ou non
     function setState(value) {
         // exposer la valeur pour Phaser
         window.blurValue = value;
@@ -23,21 +28,21 @@ window.blurValue = "oui"; // état initial
           label.classList.toggle("active", label.dataset.value === value);
         });
       
-        // remettre le handle à gauche/droite (sinon getCurrentValue() pas content)
+        // mets le curseur à la bonne position selon la valeur actuelle
         handle.style.left = (value === "non") ? `${minLeft}px` : `${maxLeft}px`;
       
-        // garder l’effet sur la page "blur" si tu en as besoin
+        // garder l’effet sur la page "blur"
         const blurPx = (value === "non") ? "0px" : "6px";
         bgFlou.style.backdropFilter = `blur(${blurPx})`;
       
-        //notifier Phaser si la valeur change pendant le jeu
+        // notifier Phaser si la valeur change pendant le jeu
         document.dispatchEvent(new CustomEvent("blurChanged", { detail: value }));
       }
       
-      
-    console.log(window.blurValue); // "oui" ou "non"
+    // "oui" ou "non"
+    console.log(window.blurValue); 
 
-    // Gestion du bouton
+    // Gestion du bouton pour la valeur actuelle du toggle
     function getCurrentValue() {
         return parseInt(handle.style.left) <= (maxLeft / 2) ? "non" : "oui";
     }
@@ -84,8 +89,12 @@ window.blurValue = "oui"; // état initial
     toggle.addEventListener("click", (e) => {
         // Éviter que le click déclenche un toggle après un drag
         if (isDragging) return;
+
+        // Inverse la valeur actuelle
         const newValue = getCurrentValue() === "oui" ? "non" : "oui";
+        // Sauvegarde la valeur dans le localStorage
         localStorage.setItem('blur-value', getCurrentValue());
+        // Met à jour l’état visuel et notifie
         setState(newValue);
     });
 
