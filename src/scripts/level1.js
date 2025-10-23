@@ -236,7 +236,10 @@ export class level1 extends Phaser.Scene {
             const selectedShadowKey = this.shadowImages[this.selectedIndex].texture.key;
             const isCorrect = selectedShadowKey === this.currentCharacter.correctShadow;
 
-            const color = isCorrect ? 0xD9C667 : 0xD96B52;;
+            if (this.enCours) return;
+            this.enCours = true;
+
+            const color = isCorrect ? 0xD9C667 : 0xD96B52;
             const message = isCorrect ? "Correct !" : "Incorrect !";
 
             // Changer la bordure sélectionnée
