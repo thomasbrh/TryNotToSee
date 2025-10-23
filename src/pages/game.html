@@ -17,10 +17,11 @@
         <meta property="og:image:height" content="945">
         <!-- link -->
         <link rel="icon" type="image/x-icon" href="assets/images/logo/logo-jeu.svg">
-        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="../styles/main.css">
         <!-- script -->
         <!-- <script type="module"></script> -->
-        <script type="module" src="scripts/main.js" defer></script>
+        <script type="module" src="../scripts/main.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.js"></script>
         <!-- link Typos -->
         <link rel="stylesheet" href="https://use.typekit.net/twl0uaj.css">
         <style> @import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap'); </style>
@@ -51,26 +52,9 @@
             </div>
         </div>
 
-
-
-        <!-- home page -->
-        <section id="home-page" class="home-body scene">
-            <video class="animation-bg" autoplay loop muted playsinline>
-                <source src="assets/images/Animation-bg_1.mp4" type="video/mp4" />
-            </video>
-
-            <img class="logo-jeu logo-animation" src="assets/images/logo/logo-jeu.svg" alt="Logo du jeu TryNotToSee">
-
-            <form class="form-user-input" id="user-form">
-                <label class="label-user-input rotate" for="user-input">Pseudo :</label>
-                <input class="username-input box-shadow rotate" id="user-input" type="text" placeholder="Entrez votre pseudo" required>
-                
-                <!-- btn play -->
-                <button onclick="window.location.href='../blur.html'" class="btn start-button box-shadow rotate" id="user-submit" type="submit">Jouer</button>
-                
-                <!-- error msg -->
-                <div id="pseudoError" class="error" role="alert" aria-live="assertive"></div> <!--message d'erreur : pas de pseudo entré-->
-            </form>
+        <!-- game canvas -->
+        <section id="game-container" class="game scene">
+            <!-- injection du canvas par Phaser (controller par l'id dans main.js) -->
         </section>
     </body>
 </html>

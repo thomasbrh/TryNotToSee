@@ -17,10 +17,10 @@
         <meta property="og:image:height" content="945">
         <!-- link -->
         <link rel="icon" type="image/x-icon" href="assets/images/logo/logo-jeu.svg">
-        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="../styles/main.css">
         <!-- script -->
         <!-- <script type="module"></script> -->
-        <script type="module" src="scripts/main.js" defer></script>
+        <script type="module" src="../scripts/main.js" defer></script>
         <!-- link Typos -->
         <link rel="stylesheet" href="https://use.typekit.net/twl0uaj.css">
         <style> @import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap'); </style>
@@ -50,27 +50,30 @@
                 </button>
             </div>
         </div>
+        
 
-
-
-        <!-- home page -->
-        <section id="home-page" class="home-body scene">
+        <!-- blur page -->
+        <section id="blur-page" class="blur scene home__container">
             <video class="animation-bg" autoplay loop muted playsinline>
-                <source src="assets/images/Animation-bg_1.mp4" type="video/mp4" />
+                <source src="assets/images/Animation-bg.mp4" type="video/mp4" />
             </video>
 
-            <img class="logo-jeu logo-animation" src="assets/images/logo/logo-jeu.svg" alt="Logo du jeu TryNotToSee">
-
-            <form class="form-user-input" id="user-form">
-                <label class="label-user-input rotate" for="user-input">Pseudo :</label>
-                <input class="username-input box-shadow rotate" id="user-input" type="text" placeholder="Entrez votre pseudo" required>
+            <div class="bg__flou"></div>
+            
+            <div class="home__content">
+                <h1 class="titre__home">Êtes&nbsp;vous<br>mal-voyant&nbsp;?</h1>
+                <!-- btn oui/non -->
+ 
+                <button class="toggle box-shadow rotate">
+                    <span class="label" data-value="oui">OUI</span>
+                    <span class="label" data-value="non">NON</span>
+                    <div class="handle"></div>
+                </button>
+        
+                <!-- btn start-game -->
+                <button onclick="window.location.href='../game.html'" class="btn start-game box-shadow rotate" id="start-game" type="submit">Continuer</button>
                 
-                <!-- btn play -->
-                <button onclick="window.location.href='../blur.html'" class="btn start-button box-shadow rotate" id="user-submit" type="submit">Jouer</button>
-                
-                <!-- error msg -->
-                <div id="pseudoError" class="error" role="alert" aria-live="assertive"></div> <!--message d'erreur : pas de pseudo entré-->
-            </form>
+            </div>
         </section>
     </body>
 </html>

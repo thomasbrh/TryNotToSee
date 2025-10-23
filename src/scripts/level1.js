@@ -170,9 +170,10 @@ export class level1 extends Phaser.Scene {
                     fontSize: "36px",
                     fill: "#FFD700",
                     fontFamily: "dynapuff-condensed"
-                }).setOrigin(0.5);
-                return;
-            }
+                    }).setOrigin(0.5);
+                    return;
+                }
+                window.location.href='../score.html';
 
             const randomIndex = Phaser.Math.Between(0, this.remainingCharacters.length - 1);
             this.currentCharacter = this.remainingCharacters[randomIndex];
