@@ -1,19 +1,22 @@
 'use strict';
-//USER FORM
+// formulaire
+
+// récupére l'élément avec l'id
 const form = document.getElementById('user-form');
 
 form.addEventListener('submit', function(event) {
+    // Empêche le rechargement automatique de la page au moment de la soumission
     event.preventDefault();
 
     window.location.href = '/pages/blur.html';
 
     console.log('test');
 
-    // Get the entered username
+    // Prend la valeur entrée dans le champ texte ayant l’ID "user-input
     const usernameInput = document.getElementById('user-input').value;
 
-    // Save the username in localStorage
-    localStorage.setItem('user-input', usernameInput);
+    // Sauvegarde dans le localStorage
+    localStorage.setItem('user-input', usernameInput); // enregistre la valeur sous la clé "user-input"
 
     console.log('Username saved:', usernameInput);
 });

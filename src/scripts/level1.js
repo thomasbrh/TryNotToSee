@@ -1,30 +1,38 @@
+// Variables globales
 var monTimer;
 var chronoText;
 var chrono = 0;
 
-//get username
+//get username by localStorage
 const playerName = localStorage.getItem('user-input');
 
+// gestion de flou global
 window.blurValue = localStorage.getItem('blur-value');
 console.log(window.blurValue);
 
+// Fonction de sauvegarde du score
 function saveScore(name, time) {
+    // Récupère les scores existants depuis le localStorage ou crée un tableau vide
     let scores = JSON.parse(localStorage.getItem("bestScores")) || [];
 
+    // Ajoute le nouveau score (nom + temps)
     scores.push({ name, time });
+    // Trie les scores par temps
     scores.sort((a, b) => a.time - b.time); // + petit temps = meilleur score
+    // Garde uniquement les 10 meilleurs
     scores = scores.slice(0, 10);
-
+    // Sauvegarde à nouveau dans le localStorage
     localStorage.setItem("bestScores", JSON.stringify(scores));
 }
 
+// scène principale
 export class level1 extends Phaser.Scene {
     constructor() {
         super('level1');
     }
 
     preload() {
-        // load informations characters
+        // load informations characters + ombre
         this.characters = [
             {
                 name: 'rebecca',
@@ -89,46 +97,59 @@ export class level1 extends Phaser.Scene {
         this.load.image("shadow-lee-right", "../assets/images/level1/shadow/Shadow_lee_right.svg");
         this.load.image("shadow-lee-wrong01", "../assets/images/level1/shadow/Shadow_lee_wrong01.svg");
         this.load.image("shadow-lee-wrong02", "../assets/images/level1/shadow/Shadow_lee_wrong02.svg");
+
+        //load des sons
+        this.load.audio('correct', '../assets/images/sound-effect/Correct.mp3');
+        this.load.audio('incorrect', '../assets/images/sound-effect/Incorect.mp3');
+        this.load.audio('perdu', '../assets/images/sound-effect/Perdu.mp3');
+        this.load.audio('selection', '../assets/images/sound-effect/Selection.mp3');
+        this.load.audio('victoire', '../assets/images/sound-effect/Victoire.mp3');
     }
 
     create() {
+        // Variables
+        // perso à valider
         this.remainingCharacters = [...this.characters];
+        // perso valider
         this.validatedCharacters = [];
+        // perso affiché
         this.currentCharacter = null;
+        // index selection
         this.selectedIndex = 1;
+        // ref img ombre
         this.shadowImages = [];
+        // bordure autour de l'ombre
         this.shadowGraphics = [];
+        // vérif en cours pour le délai
         this.enCours = false;
 
-        // KEYS
+        // Gestion des touches clavier
         this.cursors = this.input.keyboard.createCursorKeys();
         this.keyEnter = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
 
-        // BACKGROUND
+        // Arrière-plan
         const bg = this.add.image(0, 0, 'background_level1').setOrigin(0, 0);
+        // prend tte la longueur
         bg.displayWidth = this.sys.game.config.width;
-        bg.displayHeight = this.sys.game.config.height;
+        // prend tte la hauteur
+        bg.displayHeight = this.sys.game.config.height; 
+        // main
         const hand = this.add.image(150, 535, "hand");
 
-        // Gestion du flou
+        // Gestion du flou selon l'état
         const applyBlur = (shouldBlur) => {
             // flou sur décor, main et personnage seulement
             [bg, this.characterImage, hand].forEach(obj => {
-                if (!obj || !obj.preFX) return;
-                obj.preFX.clear();
+                // Sécurité si effet pré-FX non dispo
+                if (!obj || !obj.preFX) return; 
+                obj.preFX.clear(); 
                 if (shouldBlur) obj.preFX.addBlur(1);
             });
         };
-
-        /*  document.addEventListener("blurChanged", (e) => {
-            const shouldBlurNow = (e.detail === "non");
-            applyBlur(shouldBlurNow);
-        }); */
-
+        // Applique le flou initial selon la valeur
         applyBlur(window.blurValue);
 
-        // TIMER
-
+        // timer
         monTimer = this.time.addEvent({
             delay: 1000,
             callback: compteUneSeconde,
@@ -138,24 +159,28 @@ export class level1 extends Phaser.Scene {
             loop: true
         });
 
+        // fonction qui incrémente le chrono
         function compteUneSeconde() {
             chrono = chrono + 1;
             chronoText.setText("Time: " + chrono);
         }
 
+        // Afficher chrono
         chronoText = this.add.text(40, 60, "Time: 0", {
             fontSize: "24px",
             fill: "#FFFFFF"
         });
 
+        // Log du temps écoulé
         var elapsed = monTimer.getElapsedSeconds();
         console.log('Temps écoulé :', elapsed, 's');
 
+        // Fonction pour récupérer les meilleurs scores
         function getBestScores() {
             return JSON.parse(localStorage.getItem("bestScores")) || [];
         }
 
-        // charger un personnage
+        // charger un nouveau personnage
         this.loadNewCharacter = () => {
             if (this.characterImage) this.characterImage.destroy();
             this.shadowImages.forEach(img => img.destroy());
@@ -163,35 +188,44 @@ export class level1 extends Phaser.Scene {
             this.shadowImages = [];
             this.shadowGraphics = [];
 
-            //si tous réussi, alors fin du jeu
-
+            // Si plus de personnages, le jeu se fini
             if (this.remainingCharacters.length === 0) {
                 console.log("Tous les personnages sont réussis !");
-                // STOP TIMER
+                // arrête le timer
                 monTimer.paused = true;
+
+                // save le score et schrono
+                saveScore(playerName, chrono);
                 
+                // Affiche le message de fin
                 this.add.text(452, 360, "Fin du jeu !", {
                     fontSize: "72px",
                     fill: "#FFD700",
                     fontFamily: "dynapuff-condensed"
                     }).setOrigin(0.5);
 
+                    // Redirige vers la page des scores
                     window.location.href='../pages/score.html';
                     return;
                 }
 
+                // Sélectionne un personnage aléatoire parmi ceux qui restent
             const randomIndex = Phaser.Math.Between(0, this.remainingCharacters.length - 1);
             this.currentCharacter = this.remainingCharacters[randomIndex];
+
+            // Mélange les ombres de ce personnage
             let shuffledShadows = [];
             if (this.currentCharacter) {
                 this.characterImage = this.add.image(450, 405, this.currentCharacter.name);
                 shuffledShadows = [...this.currentCharacter.shadow].sort(() => Math.random() - 0.5);
             }
 
+            // Affiche les 3 ombres dans des cadres
             for (let i = 0; i < 3; i++) {
                 const x = 825;
                 const y = 135 + i * 200;
 
+                // Cadre visuel autour de l’ombre
                 const graphics = this.add.graphics();
                 graphics.fillStyle(0xF8E3CE, 1);
                 graphics.lineStyle(2, 0xffffff, 1);
@@ -204,19 +238,20 @@ export class level1 extends Phaser.Scene {
                 this.shadowImages.push(shadow);
             }
 
+            // Réinitialise la sélection
             this.selectedIndex = 1;
             this.highlightSelectedShadow();
             applyBlur(window.blurValue === "non"); // garde le flou si déjà activé
         };
 
-        // Highlight shadow
+        // Fonction hover de l'ombre
         this.highlightSelectedShadow = () => {
             this.shadowGraphics.forEach((g, index) => {
                 g.clear();
                 // Fond inchangé
                 g.fillStyle(0xF8E3CE, 1);
 
-                // Si c’est la sélection actuelle
+                // Bordure de selection
                 if (index === this.selectedIndex) {
                 g.lineStyle(3, 0x000000, 1);
                 } else {
@@ -231,16 +266,19 @@ export class level1 extends Phaser.Scene {
 
         // Validation 
         this.validateSelection = () => {
+            // Vérifie si l’ombre choisie est la bonne
             const selectedShadowKey = this.shadowImages[this.selectedIndex].texture.key;
             const isCorrect = selectedShadowKey === this.currentCharacter.correctShadow;
 
-            if (this.enCours) return;
+            // pour éviter le spam clic
+            if (this.enCours) return; 
             this.enCours = true;
 
+            // Couleur et texte selon le résultat
             const color = isCorrect ? 0xD9C667 : 0xD96B52;
             const message = isCorrect ? "Correct !" : "Incorrect !";
 
-            // Changer la bordure sélectionnée
+            // Change la bordure de la sélection
             const selectedGraphic = this.shadowGraphics[this.selectedIndex];
             selectedGraphic.clear();
             selectedGraphic.fillStyle(0xF8E3CE, 1);
@@ -248,7 +286,7 @@ export class level1 extends Phaser.Scene {
             selectedGraphic.fillRoundedRect(825 - 87.5, 135 + this.selectedIndex * 200 - 87.5, 175, 175, 18);
             selectedGraphic.strokeRoundedRect(825 - 87.5, 135 + this.selectedIndex * 200 - 87.5, 175, 175, 18);
 
-            // Afficher un texte temporaire
+            // Affiche le message temporaire au centre
             const resultText = this.add.text(493, 180, message, {
                 fontSize: '72px',
                 fill: isCorrect ? '#D9C667' : '#e7c8bdff',
@@ -256,12 +294,20 @@ export class level1 extends Phaser.Scene {
             }).setOrigin(0.6);
 
             // Marquer le personnage si bon
+            //son correct
             if (isCorrect) {
+                this.sound.add('correct', {
+                    volume: 0.5,
+                    loop: false,
+                    detune: 100,
+                    delay: 0
+                }).play();
+
                 this.validatedCharacters.push(this.currentCharacter);
                 this.remainingCharacters = this.remainingCharacters.filter(c => c !== this.currentCharacter);
             }
 
-            // Pause puis chargement du prochain
+            // Pause puis chargement du prochain perso
             this.time.delayedCall(1000, () => {
                 resultText.destroy();
                 this.enCours = false;
@@ -270,7 +316,7 @@ export class level1 extends Phaser.Scene {
         };
 
 
-        // BTN START
+        // bouton start
         const graphics = this.add.graphics();
         graphics.fillStyle(0xD9C667, 1);
         graphics.fillRoundedRect(440, 350, 170, 55, 25);
@@ -280,23 +326,29 @@ export class level1 extends Phaser.Scene {
             backgroundColor: '#D9C667',
             fontSize: '32px',
             fontFamily: "dynapuff-condensed",
-        }).setInteractive();
+        }).setInteractive(); // Rends le texte cliquable
 
         this.started = false;
 
+         // Fonction de démarrage du jeu
         const startGame = () => {
+            // Empêche double clic
             if (this.started) return;
             this.started = true;
+            // Lance le chrono
             monTimer.paused = false;
+            // détruit le bouton
             if (this.timerButton) this.timerButton.destroy();
             if (graphics) graphics.destroy();
             this.loadNewCharacter();
         };
 
-        this.timerButton.on('pointerdown', startGame);
+        // démarre le jeu
+        this.timerButton.on('pointerdown', startGame); 
     }
 
     update() {
+        // naviguer clavier haut et bas
         if (Phaser.Input.Keyboard.JustDown(this.cursors.up)) {
             this.selectedIndex = Phaser.Math.Clamp(this.selectedIndex - 1, 0, 2);
             this.highlightSelectedShadow();
@@ -307,6 +359,7 @@ export class level1 extends Phaser.Scene {
             this.highlightSelectedShadow();
         }
 
+        // Validater clavier ENTER
         if (Phaser.Input.Keyboard.JustDown(this.keyEnter)) {
             if (!this.started && this.timerButton) {
                 this.timerButton.emit('pointerdown');
@@ -315,12 +368,13 @@ export class level1 extends Phaser.Scene {
             }
         }
 
+        // Vérifie fin du jeu
         if (this.remainingCharacters.length === 0 && !monTimer.paused) {
             console.log("Tous les personnages sont réussis !");
-            // STOP TIMER
+            // arrete le timer
             monTimer.paused = true;
 
-            //stock timer and username in localstorage
+            // save le chrono et pseudo dans le localStorage
             saveScore(playerName, chrono);
                 
             this.add.text(452, 360, "Fin du jeu !", {
