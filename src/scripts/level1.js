@@ -1,9 +1,12 @@
 var monTimer;
 var chronoText;
-        var chrono = 0;
+var chrono = 0;
 
 //get username
 const playerName = localStorage.getItem('user-input');
+
+window.blurValue = localStorage.getItem('blur-value');
+console.log(window.blurValue);
 
 function saveScore(name, time) {
     let scores = JSON.parse(localStorage.getItem("bestScores")) || [];
@@ -116,10 +119,11 @@ export class level1 extends Phaser.Scene {
             });
         };
 
-        document.addEventListener("blurChanged", (e) => {
-            const shouldBlurNow = (e.detail === "non");
-            applyBlur(shouldBlurNow);
-        });
+        // document.addEventListener("blurChanged", (e) => {
+        //     const shouldBlurNow = (e.detail === "non");
+        //     applyBlur(shouldBlurNow);
+        // });
+        applyBlur(window.blurValue);
 
         // TIMER
 

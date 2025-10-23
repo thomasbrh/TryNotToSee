@@ -1,67 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>TryNotToSee</title>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <!-- meta Partage -->
-  <meta property="og:site_name" content="TryNotToSee">
-  <meta property="og:title" content="TryNotToSee">
-  <meta property="og:description" content="TryNotToSee">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="TryNotToSee.thomasbruch.be">
-  <meta property="og:image" content="assets/images/logo/logo-jeu.svg">
-  <meta property="og:image:width" content="1800">
-  <meta property="og:image:height" content="945">
-  <!-- link -->
-  <link rel="icon" type="image/x-icon" href="assets/images/logo/logo-jeu.svg">
-  <link rel="stylesheet" href="../styles/main.css">
-  <!-- script -->
-  <!-- <script type="module"></script> -->
-  <script type="module" src="../scripts/main.js" defer></script>
-  <!-- link Typos -->
-  <link rel="stylesheet" href="https://use.typekit.net/twl0uaj.css">
-  <style> @import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap'); </style>
-</head>
-<body>
-  <!-- audio -->
-  <audio loop id="music">
-    <source id="music-bg" src="../assets/images/sound/music-bg.mp3" type="audio/mpeg" />
-  </audio>
-  <!-- btn son -->
-  <!-- on/off -->
-  <div class="fixed">
-    <div class="flex-btn">
-      <button class="sound-button box-shadow" id="sound-btn" type="button">
-        <img id="pause" class="disabled" src="../assets/images/sound/sound-off.svg" alt="sound off button"> 
-        <img id="play" class="" src="../assets/images/sound/sound-on.svg" alt="sound on button"> 
-      </button>
-                <!-- + -->
-      <button class="sound-button box-shadow" id="volume-btn-up" type="button">
-      <img id="up" src="../assets/images/sound/sound+.svg" alt="sound up button">
-      </button>
-                <!-- - -->
-      <button class="sound-button box-shadow" id="volume-btn-down" type="button">
-        <img id="down" src="../assets/images/sound/sound-.svg" alt="sound down button">
-      </button>
-    </div>
-  </div>
+	<head>
+	<title>TryNotToSee</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<!-- meta Partage -->
+	<meta property="og:site_name" content="TryNotToSee">
+	<meta property="og:title" content="TryNotToSee">
+	<meta property="og:description" content="TryNotToSee">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="TryNotToSee.thomasbruch.be">
+	<meta property="og:image" content="assets/images/logo/logo-jeu.svg">
+	<meta property="og:image:width" content="1800">
+	<meta property="og:image:height" content="945">
+	<!-- link -->
+	<link rel="icon" type="image/x-icon" href="assets/images/logo/logo-jeu.svg">
+	<link rel="stylesheet" href="../styles/main.css">
+	<!-- script -->
+	<!-- <script type="module"></script> -->
+	<script type="module" src="../scripts/main.js" defer></script>
+	<!-- link Typos -->
+	<link rel="stylesheet" href="https://use.typekit.net/twl0uaj.css">
+	<style> @import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap'); </style>
+	</head>
+	<body id="score">
+	<!-- audio -->
+	<audio loop id="music">
+		<source id="music-bg" src="../assets/images/sound/music-bg.mp3" type="audio/mpeg" />
+	</audio>
+	<!-- btn son -->
+	<!-- on/off -->
+	<div class="fixed">
+		<div class="flex-btn">
+		<button class="sound-button box-shadow" id="sound-btn" type="button">
+			<img id="pause" class="disabled" src="../assets/images/sound/sound-off.svg" alt="sound off button"> 
+			<img id="play" class="" src="../assets/images/sound/sound-on.svg" alt="sound on button"> 
+		</button>
+					<!-- + -->
+		<button class="sound-button box-shadow" id="volume-btn-up" type="button">
+		<img id="up" src="../assets/images/sound/sound+.svg" alt="sound up button">
+		</button>
+					<!-- - -->
+		<button class="sound-button box-shadow" id="volume-btn-down" type="button">
+			<img id="down" src="../assets/images/sound/sound-.svg" alt="sound down button">
+		</button>
+		</div>
+	</div>
 
-  <section id="score-label" class="scene">
-    <h1>Best Score</h1>
-    <table id="scoreboard">
-      <thead>
-        <tr>
-          <th>Pseudo</th>
-          <th>Temps (s)</th>
-        </tr>
-      </thead>
-      <tbody id="score-body"></tbody>
-    </table>
+	<section id="score-label" class="scene">
+		<h1>Best Score</h1>
+		<table id="scoreboard">
+		<thead>
+			<tr>
+			<th>Pseudo</th>
+			<th>Temps (s)</th>
+			</tr>
+		</thead>
+		<tbody id="score-body"></tbody>
+		</table>
 
-   <button onclick="window.location.href='../index.html'">Retour à l’accueil</button>      
-  </section>
-</body>
+	<button onclick="window.location.href='../index.html'">Retour à l’accueil</button>      
+	</section>
+	</body>
 </html>

@@ -1,10 +1,11 @@
 'use strict';
 //USER FORM
-document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('user-form');
 
   form.addEventListener('submit', function(event) {
     event.preventDefault();
+
+    console.log('test');
 
     // Get the entered username
     const usernameInput = document.getElementById('user-input').value;
@@ -14,4 +15,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log('Username saved:', usernameInput);
   });
-});

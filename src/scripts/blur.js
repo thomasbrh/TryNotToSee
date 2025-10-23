@@ -1,9 +1,7 @@
 "use strict";
-
 // Gestion du blur
 window.blurValue = "oui"; // état initial
 
-document.addEventListener("DOMContentLoaded", () => {
     const toggle = document.querySelector(".toggle");
     const handle = document.querySelector(".handle");
     const labels = document.querySelectorAll(".label");
@@ -87,9 +85,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // Éviter que le click déclenche un toggle après un drag
         if (isDragging) return;
         const newValue = getCurrentValue() === "oui" ? "non" : "oui";
+        localStorage.setItem('blur-value', getCurrentValue());
         setState(newValue);
     });
 
     // Init
     setState("oui");
-});

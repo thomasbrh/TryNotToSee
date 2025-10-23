@@ -20,6 +20,11 @@ if (pageId === 'blur') {
   console.log('blur.js')
 }
 
+if (pageId === 'score') {
+  import('./score.js');
+  console.log('score.js')
+}
+
 if (pageId === 'game') {
   Promise.all([
     import('./level1.js'),
