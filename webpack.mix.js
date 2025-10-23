@@ -15,6 +15,7 @@ mix
   .copy('src/index.html', 'dist/index.html')
   /* .copyDirectory('src/pages', 'dist/pages') */
   .copyDirectory('src/assets', 'dist/assets')
+  .copyDirectory('src/pages', 'dist/pages')
   .js('src/scripts/main.js', 'dist/scripts/')
   .sass('src/styles/main.scss', 'styles/', { sassOptions: { outputStyle: 'expanded' } })
   .options({
