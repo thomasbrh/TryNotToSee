@@ -174,7 +174,7 @@ export class level1 extends Phaser.Scene {
                 saveScore(playerName, chrono);
                 
                 this.add.text(452, 360, "Fin du jeu !", {
-                    fontSize: "36px",
+                    fontSize: "72px",
                     fill: "#FFD700",
                     fontFamily: "dynapuff-condensed"
                     }).setOrigin(0.5);
@@ -327,7 +327,7 @@ export class level1 extends Phaser.Scene {
             saveScore(playerName, chrono);
                 
             this.add.text(452, 360, "Fin du jeu !", {
-                fontSize: "36px",
+                fontSize: "72px",
                 fill: "#FFD700",
                 fontFamily: "dynapuff-condensed"
             }).setOrigin(0.5);
