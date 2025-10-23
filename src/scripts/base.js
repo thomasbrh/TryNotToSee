@@ -41,13 +41,13 @@ soundBtn.addEventListener('click', async () => {
 // Sync btn
 music.addEventListener('play', () => {
     isPlaying = true;
-    pauseBtn.classList.remove('disabled');
-    playBtn.classList.add('disabled');
+    playBtn.classList.remove('disabled');
+    pauseBtn.classList.add('disabled');
 });
 music.addEventListener('pause', () => {
     isPlaying = false;
-    playBtn.classList.remove('disabled');
-    pauseBtn.classList.add('disabled');
+    pauseBtn.classList.remove('disabled');
+    playBtn.classList.add('disabled');
 });
 
 
