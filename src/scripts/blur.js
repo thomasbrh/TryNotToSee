@@ -24,10 +24,10 @@ window.blurValue = "oui"; // état initial
         });
       
         // remettre le handle à gauche/droite (sinon getCurrentValue() pas content)
-        handle.style.left = (value === "oui") ? `${minLeft}px` : `${maxLeft}px`;
+        handle.style.left = (value === "non") ? `${minLeft}px` : `${maxLeft}px`;
       
         // garder l’effet sur la page "blur" si tu en as besoin
-        const blurPx = (value === "oui") ? "0px" : "6px";
+        const blurPx = (value === "non") ? "0px" : "6px";
         bgFlou.style.backdropFilter = `blur(${blurPx})`;
       
         //notifier Phaser si la valeur change pendant le jeu
@@ -39,7 +39,7 @@ window.blurValue = "oui"; // état initial
 
     // Gestion du bouton
     function getCurrentValue() {
-        return parseInt(handle.style.left) <= (maxLeft / 2) ? "oui" : "non";
+        return parseInt(handle.style.left) <= (maxLeft / 2) ? "non" : "oui";
     }
 
     // Démarrer le drag souris/tactile
@@ -91,26 +91,3 @@ window.blurValue = "oui"; // état initial
 
     // Init
     setState("oui");
-
-
-/* import Lib */
-/* import animation GSAP */
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-gsap.registerPlugin(ScrollTrigger);
-// animation base
-gsap.to('.logo-animation', {
-    scale: 1.05,
-    y: 10,
-    rotation: 4,
-    duration: 4,
-    yoyo: true,
-    repeat: -1,
-});
-  
-gsap.to('.rotate', {
-    '--scale': 1.1,
-    duration: 1.2,
-    yoyo: true,
-    repeat: -1,
-});

@@ -120,10 +120,11 @@ export class level1 extends Phaser.Scene {
             });
         };
 
-        // document.addEventListener("blurChanged", (e) => {
-        //     const shouldBlurNow = (e.detail === "non");
-        //     applyBlur(shouldBlurNow);
-        // });
+        /*  document.addEventListener("blurChanged", (e) => {
+            const shouldBlurNow = (e.detail === "non");
+            applyBlur(shouldBlurNow);
+        }); */
+
         applyBlur(window.blurValue);
 
         // TIMER
