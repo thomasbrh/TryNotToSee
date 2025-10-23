@@ -98,6 +98,7 @@ export class level1 extends Phaser.Scene {
         this.selectedIndex = 1;
         this.shadowImages = [];
         this.shadowGraphics = [];
+        this.enCours = false;
 
         // KEYS
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -250,6 +251,7 @@ export class level1 extends Phaser.Scene {
             const resultText = this.add.text(493, 180, message, {
                 fontSize: '36px',
                 fill: isCorrect ? '0xD9C667' : '0xD96B52;',
+                /* fill: isCorrect ? '#D9C667' : '#D96B52', */
                 fontFamily: "dynapuff-condensed"
             }).setOrigin(0.5);
 
@@ -262,6 +264,7 @@ export class level1 extends Phaser.Scene {
             // Pause puis chargement du prochain
             this.time.delayedCall(1000, () => {
                 resultText.destroy();
+                this.enCours = false;
                 this.loadNewCharacter();
             });
         };
