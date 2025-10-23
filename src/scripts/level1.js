@@ -101,12 +101,17 @@ export class level1 extends Phaser.Scene {
         //load des sons
         this.load.audio('correct', '../assets/images/sound-effect/Correct.mp3');
         this.load.audio('incorrect', '../assets/images/sound-effect/Incorect.mp3');
-        this.load.audio('perdu', '../assets/images/sound-effect/Perdu.mp3');
         this.load.audio('selection', '../assets/images/sound-effect/Selection.mp3');
         this.load.audio('victoire', '../assets/images/sound-effect/Victoire.mp3');
+        this.load.audio('music', '../assets/images/sound-effect/music-bg.mp3');
     }
 
     create() {
+        // son selection
+        this.sound.add('music', {
+            volume: 0.6,
+        }).play();
+
         // Variables
         // perso à valider
         this.remainingCharacters = [...this.characters];
@@ -223,7 +228,7 @@ export class level1 extends Phaser.Scene {
             // Affiche les 3 ombres dans des cadres
             for (let i = 0; i < 3; i++) {
                 const x = 825;
-                const y = 135 + i * 200;
+                const y = 138 + i * 200;
 
                 // Cadre visuel autour de l’ombre
                 const graphics = this.add.graphics();
@@ -253,9 +258,17 @@ export class level1 extends Phaser.Scene {
 
                 // Bordure de selection
                 if (index === this.selectedIndex) {
-                g.lineStyle(3, 0x000000, 1);
+                g.lineStyle(7, 0x000000, 2);
+
+            
+                // son selection
+                this.sound.add('selection', {
+                    volume: 0.1,
+                }).play();
+
+
                 } else {
-                g.lineStyle(2, 0xE3B09D, 1);
+                g.lineStyle(4, 0xE3B09D, 2);
                 }
 
                 g.fillRoundedRect(825 - 87.5, 135 + index * 200 - 87.5, 175, 175, 18);
@@ -293,19 +306,20 @@ export class level1 extends Phaser.Scene {
                 fontFamily: "dynapuff-condensed"
             }).setOrigin(0.6);
 
-            // Marquer le personnage si bon
-            //son correct
-            if (isCorrect) {
-                this.sound.add('correct', {
-                    volume: 0.5,
-                    loop: false,
-                    detune: 100,
-                    delay: 0
-                }).play();
 
-                this.validatedCharacters.push(this.currentCharacter);
-                this.remainingCharacters = this.remainingCharacters.filter(c => c !== this.currentCharacter);
+            // Marquer le personnage si bon
+            // son correct
+            if (isCorrect) {
+                this.sound.add('correct', { volume: 0.4 }).play();
             }
+            // son incorrect
+            else {
+                this.sound.add('incorrect', { volume: 0.9 }).play();
+            }
+
+
+            this.validatedCharacters.push(this.currentCharacter);
+            this.remainingCharacters = this.remainingCharacters.filter(c => c !== this.currentCharacter);
 
             // Pause puis chargement du prochain perso
             this.time.delayedCall(1000, () => {
