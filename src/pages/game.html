@@ -27,35 +27,35 @@
         <style> @import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap'); </style>
     </head>
 
-    <body id="game">
-        <!-- audio -->
-        <audio loop id="music">
-            <source id="music-bg" src="../assets/images/sound/music-bg.mp3" type="audio/mpeg" />
-        </audio>
+    <!-- audio -->
+    <audio loop id="music">
+        <source id="music-bg" src="../assets/images/sound/music-bg.mp3" type="audio/mpeg" />
+    </audio>
 
-        
-        <!-- btn son -->
-        <!-- on/off -->
-        <div class="fixed">
-            <div class="flex-btn">
-                <button class="sound-button box-shadow" id="sound-btn" type="button">
-                    <img id="pause" class="" src="../assets/images/sound/sound-off.svg" aria-label="Bouton pour désactiver le son" alt="sound off button"> 
-                    <img id="play" class="disabled" src="../assets/images/sound/sound-on.svg" aria-label="Bouton pour activer le son" alt="sound on button"> 
-                </button>
 
-                <!-- - -->
-                <button class="sound-button box-shadow" id="volume-btn-down" aria-label="Bouton pour diminuer le son" type="button">
-                    <img id="down" src="../assets/images/sound/sound-.svg"  alt="sound down button">
-                </button>
+    <!-- btn son -->
+    <!-- on/off -->
+    <div class="fixed">
+        <div class="flex-btn"> <!-- disabled -->
+            <button class="sound-button box-shadow" id="sound-btn" type="button">
+                <img id="pause" class="disabled" src="../assets/images/sound/sound-off.svg" aria-label="Bouton pour désactiver le son" alt="sound off button"> 
+                <img id="play" class="disabled" src="../assets/images/sound/sound-on.svg" aria-label="Bouton pour activer le son" alt="sound on button"> 
+            </button>
 
-                <!-- + -->
-                <button class="sound-button box-shadow" id="volume-btn-up" aria-label="Bouton pour augmenter le son" type="button">
-                    <img id="up" src="../assets/images/sound/sound+.svg" alt="sound up button">
-                </button>
-            </div>
+            <!-- - --> <!-- disabled -->
+            <button class="sound-button box-shadow disabled" id="volume-btn-down" aria-label="Bouton pour diminuer le son" type="button">
+                <img id="down" src="../assets/images/sound/sound-.svg"  alt="sound down button">
+            </button>
+
+            <!-- + --> <!-- disabled -->
+            <button class="sound-button box-shadow disabled" id="volume-btn-up" aria-label="Bouton pour augmenter le son" type="button">
+                <img id="up" src="../assets/images/sound/sound+.svg" alt="sound up button">
+            </button>
         </div>
+    </div>
 
 
+    <body id="game">
         <!-- game canvas -->
         <section id="game-container" class="game scene">
             <!-- injection du canvas par Phaser (controller par l'id dans main.js) -->
