@@ -23,13 +23,6 @@
     backdrop-filter: blur(7px);
     -webkit-backdrop-filter: blur(7px); /* Pour Safari */
     z-index: 1;
-
-    /* ou bien si ce n'est pas bien supporter: https://caniuse.com/?search=backdrop-filter */
-    /* object-fit: cover;
-    filter: blur(8px);
-    z-index: 1;
-    opacity: 0.8; */
-    /* Flou ajouté via une couche par-dessus avec backdrop-filter (ou filter selon compatibilité) */
 }
 .home__content{
     position: relative;
@@ -106,81 +99,4 @@
     transition: left 0.40s cubic-bezier(0.67, 0.01, 0.34, 0.99);
     cursor: grab;
     z-index: 0;
-}
-
-
-
-/* --- les keyframes --- */
-.oiseau,
-.voiture__container {
-    position: absolute;
-    z-index: 1;
-}
-
-
-.oiseau1 {
-    top: 14.7vh;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 120px;
-    animation: vole 2s ease-in-out infinite alternate;
-}
-.oiseau2 {
-    top: 29vh;
-    left: calc(58% + 180px);
-    width: 100px;
-    animation: vole 3s ease-in-out infinite alternate-reverse;
-}
-
-
-.voiture__container {
-    bottom: 41px;
-    right: 125px;
-    width: 490px;
-    height: auto;
-}
-
-.voiture__container .voiture {
-    width: 100%;
-    height: auto;
-    display: block;
-    animation: tremblement 0.25s infinite ease-in-out;
-}
-
-.voiture__container .roue {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    animation: rotation 4s linear infinite;
-}
-
-.voiture__container .roue1 {
-    bottom: 0px;
-    left: 34px;
-}
-.voiture__container .roue2 {
-    bottom: 0px;
-    right: 52px;
-}
-
-@keyframes vole {
-    0% {
-        transform: translateX(-50%) translateY(0);
-    }
-    100% {
-        transform: translateX(-55%) translateY(-15px);
-    }
-}
-
-@keyframes rotation {
-    0% { transform: rotate(360deg); }
-    100% { transform: rotate(0deg); }
-}
-
-@keyframes tremblement {
-    0%   { transform: translateY(0); }
-    25%  { transform: translateY(-0.5px); }
-    50%  { transform: translateY(1px); }
-    75%  { transform: translateY(-0.5px); }
-    100% { transform: translateY(0); }
 }

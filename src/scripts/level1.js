@@ -107,9 +107,9 @@ export class level1 extends Phaser.Scene {
     }
 
     create() {
-        // son selection
+        // son music
         this.sound.add('music', {
-            volume: 0.6,
+            volume: 0.4,
         }).play();
 
         // Variables
@@ -387,6 +387,11 @@ export class level1 extends Phaser.Scene {
             console.log("Tous les personnages sont réussis !");
             // arrete le timer
             monTimer.paused = true;
+
+            // son victoire
+            this.sound.add('victoire', {
+                volume: 0.6,
+            }).play();
 
             // save le chrono et pseudo dans le localStorage
             saveScore(playerName, chrono);
