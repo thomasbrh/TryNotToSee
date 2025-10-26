@@ -1,5 +1,11 @@
 'use strict';
 
+if (window.location.pathname.includes('/pages/')) {
+    __webpack_public_path__ = '../';
+} else {
+    __webpack_public_path__ = './';
+}
+
 const pageId = document.body.id;
 
 /* import fichier */

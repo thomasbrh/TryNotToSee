@@ -5,11 +5,17 @@ if (!window.globalMusic) {
 
     const pageId = document.body.id;
 
+    const audioPath = pageId === 'home'
+    ? './assets/images/sound/music-bg.mp3'
+    : '../assets/images/sound/music-bg.mp3';
+
+
     if (pageId === 'game') {
         console.log('Music désactivée');
     } else {
         // équivalent de l'ancien html (glovbal)
-        const music = new Audio('../assets/images/sound/music-bg.mp3');
+        const music = new Audio(audioPath);
+        console.log('Chargement musique depuis :', audioPath);
         music.loop = true;
         music.volume = parseFloat(localStorage.getItem('musicVolume')) || 0.5;
 

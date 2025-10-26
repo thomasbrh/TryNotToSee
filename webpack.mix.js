@@ -1,50 +1,46 @@
 const mix = require('laravel-mix');
 
-/*
- |--------------------------------------------------------------------------
- | Mix Asset Management
- |--------------------------------------------------------------------------
- |
- | Mix provides a clean, fluent API for defining some Webpack build steps
- | for your Laravel application. By default, we are compiling the Sass
- | file for your application, as well as bundling up your JS files.
- |
- */
-
 mix
+  // Dossier public final
+  .setPublicPath('dist')
+  .setResourceRoot('./')
+
+  // Copie les fichiers nécessaires
   .copy('src/index.html', 'dist/index.html')
-  /* .copyDirectory('src/pages', 'dist/pages') */
   .copyDirectory('src/assets', 'dist/assets')
   .copyDirectory('src/pages', 'dist/pages')
+
+  // JS principal
   .js('src/scripts/main.js', 'dist/scripts/')
-  .sass('src/styles/main.scss', 'styles/', { sassOptions: { outputStyle: 'expanded' } })
+
+  // SCSS
+  .sass('src/styles/main.scss', 'dist/styles/', {
+    sassOptions: { outputStyle: 'expanded' }
+  })
+
+  // Options CSS
   .options({
     processCssUrls: false,
-    autoprefixer: {
-      options: {
-        browsers: [
-          'chrome <= 60, last 2 firefox versions, last 2 safari versions'
-        ],
-        grid: true
-      }
+    autoprefixer: { options: { grid: true } }
+  })
+
+  // Webpack — la clé ici 👇
+  .webpackConfig({
+    devtool: 'source-map',
+    output: {
+      publicPath: './',
+      chunkFilename: 'scripts/[name].js'
+    },
+    resolve: {
+      modules: ['src/scripts', 'node_modules']
     }
   })
-  .sourceMaps()
-  .setPublicPath('dist')
+
+  // Optionnel : serveur local
   .browserSync({
     proxy: false,
     server: 'dist',
-    files: [
-      'dist/**/*'
-    ]
+    files: ['dist/**/*']
   })
-  .webpackConfig({
-    devtool: 'source-map',
-    resolve: {
-      modules: [
-        'src/scripts',
-        'node_modules'
-      ]
-    }
-  })
+
   .disableSuccessNotifications();
