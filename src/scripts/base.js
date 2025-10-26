@@ -55,10 +55,10 @@ if (!window.globalMusic) {
                     await music.play(); // await pour gérer les navigateurs qui bloquent l’autoplay
                 }
 
-                else if (music.pause) {
+                else if (music.paused) {
                     music.play();
                 }
-                
+
                 else {
                     music.pause();
                 }
