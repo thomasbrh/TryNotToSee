@@ -3,7 +3,7 @@ const mix = require('laravel-mix');
 mix
   // Dossier public final
   .setPublicPath('dist')
-  .setResourceRoot('./')
+  .setResourceRoot('/projets/TryNotToSeeGame/')
 
   // Copie les fichiers nécessaires
   .copy('src/index.html', 'dist/index.html')
@@ -24,11 +24,11 @@ mix
     autoprefixer: { options: { grid: true } }
   })
 
-  // Webpack — la clé ici 👇
+  // Webpack
   .webpackConfig({
     devtool: 'source-map',
     output: {
-      publicPath: './',
+      publicPath: '/projets/TryNotToSeeGame/',
       chunkFilename: 'scripts/[name].js'
     },
     resolve: {

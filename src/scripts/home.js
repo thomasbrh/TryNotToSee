@@ -1,5 +1,6 @@
 'use strict';
 // formulaire
+let formSubmitted = false; // état initial
 
 // récupére l'élément avec l'id
 const form = document.getElementById('user-form');

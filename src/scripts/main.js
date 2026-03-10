@@ -1,10 +1,10 @@
 'use strict';
 
-if (window.location.pathname.includes('/pages/')) {
+/* if (window.location.pathname.includes('/pages/')) {
     __webpack_public_path__ = '../';
 } else {
     __webpack_public_path__ = './';
-}
+} */
 
 const pageId = document.body.id;
 
@@ -24,14 +24,14 @@ if (pageId === 'blur') {
 if (pageId === 'game') {
     Promise.all([
         import('./level1.js'),
-        import('./level2.js')
-    ]).then(([{ level1 }, { level2 }]) => {
+        /* import('./level2.js') */ // work in progress
+    ]).then(([{ level1 }, /* { level2 } */]) => {
         const config = {
         type: Phaser.AUTO,
         width: 986,
         height: 675,
         parent: 'game-container',
-        scene: [level1, level2],
+        scene: [level1, /* level2 */],
         physics: { default: 'arcade' },
         };
         new Phaser.Game(config);
