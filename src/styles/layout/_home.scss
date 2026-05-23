@@ -32,7 +32,15 @@
     opacity: 0.5;
 }
 
-//CHANGER LE DEFAULT FOCUS
+// hint
 .username-input:focus{
     outline: solid 2px white;
+}
+
+.hint-keyboard {
+    margin-left: 48px;
+    margin-top: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: $font-primary;
+    font-size: 14px;
 }

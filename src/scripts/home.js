@@ -2,6 +2,22 @@
 // formulaire
 let formSubmitted = false; // état initial
 
+// Pré-remplir avec un pseudo aléatoire
+const guestName = `Joueur_${String(Math.floor(Math.random() * 100)).padStart(2, '0')}`;
+document.getElementById('user-input').value = guestName;
+
+// Valider avec Entrée ou Espace depuis n'importe où sur la page
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+        if (formSubmitted) return;
+        formSubmitted = true;
+        const inputEl = document.getElementById('user-input');
+        const username = inputEl.value.trim() || guestName;
+        localStorage.setItem('user-input', username);
+        window.location.href = './pages/blur.html';
+    }
+});
+
 // récupére l'élément avec l'id
 const form = document.getElementById('user-form');
 

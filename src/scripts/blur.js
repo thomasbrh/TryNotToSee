@@ -100,3 +100,13 @@ window.blurValue = "oui"; // état initial
 
     // Init
     setState("oui");
+
+    // Navigation clavier / boutons Arduino
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft')  { setState('non'); localStorage.setItem('blur-value', 'non'); }
+        if (e.key === 'ArrowRight') { setState('oui'); localStorage.setItem('blur-value', 'oui'); }
+        if (e.key === 'Enter') {
+            localStorage.setItem('blur-value', window.blurValue);
+            window.location.href = './game.html';
+        }
+    });
