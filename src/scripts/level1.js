@@ -332,13 +332,29 @@ export class level1 extends Phaser.Scene {
             });
         };
 
+        //mise en context du jeu
+        this.gameGoalContent = this.add.text(200, 130, "Vous voilà sortie pour profiter de votre pause clope, mais malheur, vous croisez trois de vos collègues ! Pas facile de les reconnaître sans vos lunettes… Assurez vos affinités au bureau et tentez de découvrir qui se cache derrière la silhouette floue !", {
+            color: '#D96B52',
+            backgroundColor: '#F7E3CF',
+            padding: { x: 40, y: 130 },
+            wordWrap: { width: 600 },
+            fontSize: '20px',
+            fontFamily: "dynapuff-condensed",
+        })
 
+        this.gameGoalTitle = this.add.text(200, 40, "But du jeu", {
+            color: '#D96B52',
+            padding: { x: 40, y: 130 },
+            wordWrap: { width: 600 },
+            fontSize: '48px',
+            fontFamily: "dynapuff-condensed",
+        })
         // bouton start
         const graphics = this.add.graphics();
         graphics.fillStyle(0xD9C667, 1);
-        graphics.fillRoundedRect(440, 350, 170, 55, 25);
+        graphics.fillRoundedRect(440, 380, 170, 55, 25);
 
-        this.timerButton = this.add.text(452, 360, "C'est parti !", {
+        this.timerButton = this.add.text(452, 390, "C'est parti !", {
             fill: 'white',
             backgroundColor: '#D9C667',
             fontSize: '32px',
@@ -356,6 +372,8 @@ export class level1 extends Phaser.Scene {
             monTimer.paused = false;
             // détruit le bouton
             if (this.timerButton) this.timerButton.destroy();
+            if (this.gameGoalContent) this.gameGoalContent.destroy();
+            if (this.gameGoalTitle) this.gameGoalTitle.destroy();
             if (graphics) graphics.destroy();
             this.loadNewCharacter();
         };
